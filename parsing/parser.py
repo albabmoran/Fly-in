@@ -1,7 +1,7 @@
 from pydantic import ValidationError
 from typing import Any, Protocol
 import sys
-from process import Hub, Connection, CheckMap
+from .processors import Hub, Connection
 import traceback
 import re
 
@@ -170,14 +170,3 @@ class ParseMap:
             print("ERROR:", e.errors()[0]["msg"])
             print(traceback.format_exc(), file=sys.stderr)
             sys.exit(1)
-
-
-def main() -> None:
-    map = ParseMap()
-    map.read_and_validate()
-    check = CheckMap()
-    check.check_map()
-    print(check.map)
-
-
-main()

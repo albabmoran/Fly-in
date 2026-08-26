@@ -1,8 +1,9 @@
 from pydantic import BaseModel, Field, model_validator, field_validator
 from typing import Optional, Any, ClassVar
+from enum import Enum
 import sys
 import abc
-from enum import Enum
+import json
 import pygame
 
 
@@ -18,9 +19,8 @@ class Zone(str, Enum):
 
 
 class Processor(abc.ABC):
-    map: ClassVar[dict[str,
-                       dict[str,
-                            dict[str, Any]]]] = {'hub': {}, 'connection': {}}
+    map: ClassVar[dict[str, Any]] = {'nb_drones': 0,
+                                     'hub': {}, 'connection': {}}
 
     @abc.abstractmethod
     def ingest(self) -> None:
@@ -38,12 +38,16 @@ class Processor(abc.ABC):
             ):
                 raise FormatError("ERROR: trying to connect unknown hub")
 
+    def convert_to_json(self) -> None:
+        with open("data/map.json", 'w', encoding='utf-8') as f:
+            json.dump(self.map, f, indent=4)
+
 
 class Hub(BaseModel, Processor):
     name: str
     coord: tuple[int, int]
     zone: Optional[Zone] = Field(default=Zone.normal)
-    color: Optional[str] = Field(default="grey")
+    color: str = Field(default="grey")
     max_drones: Optional[int] = Field(default=1, ge=0)
     nb_drones: int = Field(ge=0)
 
@@ -77,6 +81,7 @@ class Hub(BaseModel, Processor):
         data = {self.name: self.model_dump(mode='json',
                                            exclude={'name', 'nb_drones'})}
         self.map['hub'].update(data)
+        self.map['nb_drones'] = self.nb_drones
 
 
 class Connection(BaseModel, Processor):
@@ -104,6 +109,6 @@ class Connection(BaseModel, Processor):
         self.map['connection'].update(data)
 
 
-class CheckMap(Processor):
+class SaveMap(Processor):
     def ingest(self) -> None:
         pass
