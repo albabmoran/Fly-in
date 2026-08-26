@@ -1,8 +1,8 @@
+from .processors import Hub, Connection
 from pydantic import ValidationError
 from typing import Any, Protocol
-import sys
-from .processors import Hub, Connection
 import traceback
+import sys
 import re
 
 

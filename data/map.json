@@ -1,5 +1,5 @@
 {
-    "nb_drones": 2,
+    "nb_drones": 4,
     "hub": {
         "start": {
             "coord": [
@@ -8,21 +8,30 @@
             ],
             "zone": "normal",
             "color": "green",
-            "max_drones": 2
+            "max_drones": 4
         },
-        "waypoint1": {
+        "junction": {
             "coord": [
                 1,
                 0
             ],
             "zone": "normal",
+            "color": "yellow",
+            "max_drones": 2
+        },
+        "path_a": {
+            "coord": [
+                2,
+                1
+            ],
+            "zone": "normal",
             "color": "blue",
             "max_drones": 1
         },
-        "waypoint2": {
+        "path_b": {
             "coord": [
                 2,
-                0
+                -1
             ],
             "zone": "normal",
             "color": "blue",
@@ -35,22 +44,32 @@
             ],
             "zone": "normal",
             "color": "red",
-            "max_drones": 2
+            "max_drones": 4
         }
     },
     "connection": {
         "1": {
             "zone_a": "start",
-            "zone_b": "waypoint1",
-            "max_link_capacity": 1
+            "zone_b": "junction",
+            "max_link_capacity": 2
         },
         "2": {
-            "zone_a": "waypoint1",
-            "zone_b": "waypoint2",
+            "zone_a": "junction",
+            "zone_b": "path_a",
             "max_link_capacity": 1
         },
         "3": {
-            "zone_a": "waypoint2",
+            "zone_a": "junction",
+            "zone_b": "path_b",
+            "max_link_capacity": 1
+        },
+        "4": {
+            "zone_a": "path_a",
+            "zone_b": "end",
+            "max_link_capacity": 1
+        },
+        "5": {
+            "zone_a": "path_b",
             "zone_b": "end",
             "max_link_capacity": 1
         }

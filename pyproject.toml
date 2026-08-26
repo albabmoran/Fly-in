@@ -1,0 +1,25 @@
+[project]
+name = "fly-in"
+version = "0.1.0"
+description = "Fly-in project for parsing and visualizing map data."
+authors = [
+    {name = "albben-a"}
+]
+requires-python = "^3.10"
+dependencies = [
+    "pygame (>=2.6.1,<3.0.0)",
+    "pydantic (>=2.13.4,<3.0.0)"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "flake8 (>=7.3.0,<8.0.0)",
+    "mypy (>=2.3.1,<3.0.0)"
+]
+
+[tool.poetry]
+package-mode = false

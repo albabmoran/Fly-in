@@ -1,9 +1,7 @@
 PYTHON      := python3
-VENV        := venv
-BIN         := $(VENV)/bin
+POETRY      := poetry
 MAIN        := fly-in.py
 FILE        ?= maps/easy/01_linear_path.txt
-REQ_FILE    := requirements.txt
 
 GREEN       := \033[1;32m
 BLUE        := \033[1;34m
@@ -17,19 +15,17 @@ MYPY_FLAGS  := --warn-return-any \
 			   --check-untyped-defs
 
 install:
-	@echo "$(BLUE) -> Creating virtual environment $(RESET)"
-	@$(PYTHON) -m venv $(VENV)
-	@echo "$(BLUE) -> Installing dependencies from $(REQ_FILE) $(RESET)"
-	@$(BIN)/pip install -q -r $(REQ_FILE)
+	@echo "$(BLUE) -> Installing project dependencies with Poetry $(RESET)"
+	@$(POETRY) install --quiet
 	@echo "$(GREEN) -> Installation Complete!$(RESET)"
 
 run:
-	@echo "$(GREEN) -> Running $(MAIN) with $(FILE) $(RESET)"
-	@PYGAME_HIDE_SUPPORT_PROMPT=1 $(BIN)/python $(MAIN) $(FILE)
+	@echo "$(BLUE) -> Running $(MAIN) with $(FILE) $(RESET)"
+	@PYGAME_HIDE_SUPPORT_PROMPT=1 $(POETRY) run $(PYTHON) $(MAIN) $(FILE)
 
 debug:
 	@echo "$(YELLOW) -> Starting the debugger (PDB) $(RESET)"
-	@PYGAME_HIDE_SUPPORT_PROMPT=1 $(BIN)/python -m pdb $(MAIN) $(FILE)
+	@PYGAME_HIDE_SUPPORT_PROMPT=1 $(POETRY) run $(PYTHON) -m pdb $(MAIN) $(FILE)
 
 clean:
 	@echo "$(YELLOW) -> Deleting Temporary Files and Cache $(RESET)"
@@ -40,14 +36,14 @@ clean:
 
 lint:
 	@echo "$(YELLOW) -> Passing the Linter (flake8 and Mypy) $(RESET)"
-	@$(BIN)/flake8 . --exclude=venv
-	@$(BIN)/mypy . $(MYPY_FLAGS)
-	@echo "$(GREEN) -> Clean, well-typed code! $(RESET)"
+	@$(POETRY) run flake8 . --exclude=.venv
+	@$(POETRY) run mypy . $(MYPY_FLAGS)
+	@echo "$(GREEN) -> Clean, well-typed code!$(RESET)"
 
 lint-strict:
 	@echo "$(YELLOW) -> Passing the STRICT Linter (flake8 and Mypy) $(RESET)"
-	@$(BIN)/flake8 . --exclude=venv
-	@$(BIN)/mypy . --strict
-	@echo "$(GREEN) -> Perfect! Code is 100% strict and well-typed! $(RESET)"
+	@$(POETRY) run flake8 . --exclude=.venv
+	@$(POETRY) run mypy . --strict
+	@echo "$(GREEN) -> Perfect! Code is 100%% strict and well-typed!$(RESET)"
 
 .PHONY: install run debug clean lint lint-strict

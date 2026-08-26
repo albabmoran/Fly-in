@@ -1,16 +1,22 @@
 {
     "start": [
-        "waypoint1"
+        "junction"
     ],
-    "waypoint1": [
+    "junction": [
         "start",
-        "waypoint2"
+        "path_a",
+        "path_b"
     ],
-    "waypoint2": [
-        "waypoint1",
+    "path_a": [
+        "junction",
+        "end"
+    ],
+    "path_b": [
+        "junction",
         "end"
     ],
     "end": [
-        "waypoint2"
+        "path_a",
+        "path_b"
     ]
 }

@@ -1,10 +1,10 @@
 from pydantic import BaseModel, Field, model_validator, field_validator
 from typing import Optional, Any, ClassVar
 from enum import Enum
+import pygame
+import json
 import sys
 import abc
-import json
-import pygame
 
 
 class FormatError(Exception):
