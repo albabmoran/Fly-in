@@ -15,6 +15,10 @@ MYPY_FLAGS  := --warn-return-any \
 			   --check-untyped-defs
 
 install:
+	@if ! command -v poetry >/dev/null 2>&1; then \
+		echo "$(YELLOW) -> Poetry not found. Installing...$(RESET)"; \
+		$(PYTHON) -m pip install poetry; \
+	fi
 	@echo "$(BLUE) -> Installing project dependencies with Poetry $(RESET)"
 	@$(POETRY) install --quiet
 	@echo "$(GREEN) -> Installation Complete!$(RESET)"
@@ -24,7 +28,7 @@ run:
 	@PYGAME_HIDE_SUPPORT_PROMPT=1 $(POETRY) run $(PYTHON) $(MAIN) $(FILE)
 
 debug:
-	@echo "$(YELLOW) -> Starting the debugger (PDB) $(RESET)"
+	@echo "$(BLUE) -> Starting the debugger (PDB) $(RESET)"
 	@PYGAME_HIDE_SUPPORT_PROMPT=1 $(POETRY) run $(PYTHON) -m pdb $(MAIN) $(FILE)
 
 clean:

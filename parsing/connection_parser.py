@@ -7,6 +7,9 @@ class ParseCon():
     def __init__(self) -> None:
         self.connections: dict[str, list[str]] = {}
         self.data: dict[str, Any] = {}
+        self.extract_from_json()
+        self.convert_connections()
+        self.convert_to_json()
 
     def extract_from_json(self) -> None:
         with open("data/map.json", 'r', encoding='utf-8') as f:

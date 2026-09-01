@@ -1,4 +1,5 @@
-from pydantic import BaseModel, Field, model_validator, field_validator
+from pydantic import (BaseModel, Field, model_validator,
+                      field_validator, ValidationInfo, ConfigDict)
 from typing import Optional, Any, ClassVar
 from enum import Enum
 import pygame
@@ -44,35 +45,52 @@ class Processor(abc.ABC):
 
 
 class Hub(BaseModel, Processor):
+    model_config = ConfigDict(extra="allow")
+
     name: str
     coord: tuple[int, int]
     zone: Optional[Zone] = Field(default=Zone.normal)
     color: str = Field(default="grey")
     max_drones: Optional[int] = Field(default=1, ge=0)
     nb_drones: int = Field(ge=0)
+    line: int = Field(ge=0)
 
-    def __init__(self, info: dict[str, Any]) -> None:
-        super().__init__(**info)
+    def __init__(self, info: dict[str, Any],
+                 *args: Any, **kwargs: Any) -> None:
+        line = kwargs.get('line', 'Unknown')
+        self.__pydantic_validator__.validate_python(
+            {**info, **kwargs},
+            context={"line": line},
+            self_instance=self
+        )
         self.ingest()
 
     @field_validator('coord', mode='before')
     @classmethod
-    def coord_to_tuple(cls, value: str) -> tuple[int, int]:
+    def coord_to_tuple(cls, value: list[str],
+                       info: ValidationInfo) -> tuple[int, int]:
+        context = info.context or {}
+        line = context.get('line', 'unknown')
         try:
             return (int(value[0]), int(value[1]))
         except ValueError:
-            print("ERROR: coords must be integers", file=sys.stderr)
+            print(f"ERROR (line {line}):"
+                  " coords must be integers", file=sys.stderr)
             sys.exit(1)
 
     @model_validator(mode='after')
     def validate_model(self) -> 'Hub':
         if '-' in self.name:
-            raise ValueError("ERROR: Hub's name must not contain '-'")
-        if not pygame.Color(self.color):
-            raise ValueError("ERROR: Hub's color must be a"
-                             " single valid string with no ' '")
+            raise ValueError(f"ERROR (line {self.line}):"
+                             " Hub's name must not contain '-'")
+        if self.color != 'rainbow':
+            if not pygame.Color(self.color):
+                raise ValueError(f"ERROR (line {self.line}):"
+                                 " Hub's color must be a"
+                                 " single valid string with no ' '")
         if self.name in self.map['hub']:
-            raise ValueError("ERROR: Hub's name must be unique")
+            raise ValueError(f"ERROR (line {self.line}):"
+                             " Hub's name must be unique")
         if self.name == "start" or self.name == "end":
             self.max_drones = self.nb_drones
         return self
@@ -89,6 +107,7 @@ class Connection(BaseModel, Processor):
     zone_a: str
     zone_b: str
     max_link_capacity: Optional[int] = Field(default=1, ge=0)
+    line: int = Field(ge=0)
 
     def __init__(self, info: dict[str, Any]) -> None:
         super().__init__(**info)
@@ -101,7 +120,8 @@ class Connection(BaseModel, Processor):
                  and self.zone_b == con['zone_b'])
                 or (self.zone_a == con['zone_b']
                     and self.zone_b == con['zone_a'])):
-                raise ValueError("ERROR: connections must only appear once")
+                raise ValueError(f"ERROR (line {self.line}):"
+                                 " connections must only appear once")
         return self
 
     def ingest(self) -> None:
@@ -110,5 +130,9 @@ class Connection(BaseModel, Processor):
 
 
 class SaveMap(Processor):
+    def __init__(self) -> None:
+        self.check_map()
+        self.convert_to_json()
+
     def ingest(self) -> None:
         pass

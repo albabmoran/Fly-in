@@ -1,7 +1,6 @@
 [project]
 name = "fly-in"
 version = "0.1.0"
-description = "Fly-in project for parsing and visualizing map data."
 authors = [
     {name = "albben-a"}
 ]

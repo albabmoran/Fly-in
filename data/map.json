@@ -8,34 +8,28 @@
             ],
             "zone": "normal",
             "color": "green",
-            "max_drones": 4
+            "max_drones": 4,
+            "line": 4
         },
-        "junction": {
+        "bottleneck": {
             "coord": [
                 1,
                 0
             ],
             "zone": "normal",
-            "color": "yellow",
-            "max_drones": 2
+            "color": "orange",
+            "max_drones": 2,
+            "line": 5
         },
-        "path_a": {
+        "wide_area": {
             "coord": [
                 2,
-                1
+                0
             ],
             "zone": "normal",
             "color": "blue",
-            "max_drones": 1
-        },
-        "path_b": {
-            "coord": [
-                2,
-                -1
-            ],
-            "zone": "normal",
-            "color": "blue",
-            "max_drones": 1
+            "max_drones": 3,
+            "line": 6
         },
         "end": {
             "coord": [
@@ -44,34 +38,28 @@
             ],
             "zone": "normal",
             "color": "red",
-            "max_drones": 4
+            "max_drones": 4,
+            "line": 7
         }
     },
     "connection": {
         "1": {
             "zone_a": "start",
-            "zone_b": "junction",
-            "max_link_capacity": 2
+            "zone_b": "bottleneck",
+            "max_link_capacity": 4,
+            "line": 9
         },
         "2": {
-            "zone_a": "junction",
-            "zone_b": "path_a",
-            "max_link_capacity": 1
+            "zone_a": "bottleneck",
+            "zone_b": "wide_area",
+            "max_link_capacity": 4,
+            "line": 10
         },
         "3": {
-            "zone_a": "junction",
-            "zone_b": "path_b",
-            "max_link_capacity": 1
-        },
-        "4": {
-            "zone_a": "path_a",
+            "zone_a": "wide_area",
             "zone_b": "end",
-            "max_link_capacity": 1
-        },
-        "5": {
-            "zone_a": "path_b",
-            "zone_b": "end",
-            "max_link_capacity": 1
+            "max_link_capacity": 4,
+            "line": 11
         }
     }
 }
