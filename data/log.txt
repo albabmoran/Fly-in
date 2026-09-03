@@ -1,4 +1,8 @@
-D1-bottleneck D2-bottleneck D3-start D4-start
-D1-wide_area D2-wide_area D3-bottleneck D4-bottleneck
-D1-end D2-end D3-wide_area D4-wide_area
-D3-end D4-end
+D1-junction D2-start D3-start D4-start D5-start
+D1-correct_path D2-junction D3-start D4-start D5-start
+D1-intermediate D2-correct_path D3-junction D4-start D5-start
+D1-end D2-intermediate D3-correct_path D4-junction D5-start
+D2-end D3-intermediate D4-correct_path D5-junction
+D3-end D4-intermediate D5-correct_path
+D4-end D5-intermediate
+D5-end

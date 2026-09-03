@@ -1,16 +1,24 @@
 {
     "start": [
-        "bottleneck"
+        "junction"
     ],
-    "bottleneck": [
+    "junction": [
         "start",
-        "wide_area"
+        "dead_end",
+        "correct_path"
     ],
-    "wide_area": [
-        "bottleneck",
+    "dead_end": [
+        "junction"
+    ],
+    "correct_path": [
+        "junction",
+        "intermediate"
+    ],
+    "intermediate": [
+        "correct_path",
         "end"
     ],
     "end": [
-        "wide_area"
+        "intermediate"
     ]
 }

@@ -1,5 +1,5 @@
 {
-    "nb_drones": 4,
+    "nb_drones": 5,
     "hub": {
         "start": {
             "coord": [
@@ -8,58 +8,90 @@
             ],
             "zone": "normal",
             "color": "green",
-            "max_drones": 4,
+            "max_drones": 5,
             "line": 4
         },
-        "bottleneck": {
+        "junction": {
             "coord": [
                 1,
                 0
             ],
             "zone": "normal",
-            "color": "orange",
+            "color": "yellow",
             "max_drones": 2,
             "line": 5
         },
-        "wide_area": {
+        "dead_end": {
+            "coord": [
+                1,
+                1
+            ],
+            "zone": "normal",
+            "color": "red",
+            "max_drones": 1,
+            "line": 6
+        },
+        "correct_path": {
             "coord": [
                 2,
                 0
             ],
             "zone": "normal",
             "color": "blue",
-            "max_drones": 3,
-            "line": 6
+            "max_drones": 1,
+            "line": 7
         },
-        "end": {
+        "intermediate": {
             "coord": [
                 3,
                 0
             ],
             "zone": "normal",
-            "color": "red",
-            "max_drones": 4,
-            "line": 7
+            "color": "blue",
+            "max_drones": 1,
+            "line": 8
+        },
+        "end": {
+            "coord": [
+                4,
+                0
+            ],
+            "zone": "normal",
+            "color": "green",
+            "max_drones": 5,
+            "line": 9
         }
     },
     "connection": {
         "1": {
             "zone_a": "start",
-            "zone_b": "bottleneck",
-            "max_link_capacity": 4,
-            "line": 9
+            "zone_b": "junction",
+            "max_link_capacity": 2,
+            "line": 11
         },
         "2": {
-            "zone_a": "bottleneck",
-            "zone_b": "wide_area",
-            "max_link_capacity": 4,
-            "line": 10
+            "zone_a": "junction",
+            "zone_b": "dead_end",
+            "max_link_capacity": 1,
+            "line": 12
         },
         "3": {
-            "zone_a": "wide_area",
+            "zone_a": "junction",
+            "zone_b": "correct_path",
+            "max_link_capacity": 1,
+            "line": 13
+        },
+        "4": {
+            "zone_a": "correct_path",
+            "zone_b": "intermediate",
+            "max_link_capacity": 1,
+            "line": 14
+        },
+        "5": {
+            "zone_a": "intermediate",
             "zone_b": "end",
-            "max_link_capacity": 4,
-            "line": 11
+            "max_link_capacity": 1,
+            "line": 15
         }
     }
 }
