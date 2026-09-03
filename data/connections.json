@@ -1,24 +1,16 @@
 {
     "start": [
-        "junction"
+        "waypoint1"
     ],
-    "junction": [
+    "waypoint1": [
         "start",
-        "dead_end",
-        "correct_path"
+        "waypoint2"
     ],
-    "dead_end": [
-        "junction"
-    ],
-    "correct_path": [
-        "junction",
-        "intermediate"
-    ],
-    "intermediate": [
-        "correct_path",
+    "waypoint2": [
+        "waypoint1",
         "end"
     ],
     "end": [
-        "intermediate"
+        "waypoint2"
     ]
 }

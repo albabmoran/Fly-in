@@ -1,7 +1,7 @@
 PYTHON      := python3
 POETRY      := poetry
 MAIN        := fly-in.py
-FILE        ?= maps/easy/01_linear_path.txt
+MAP        	?= maps/easy/01_linear_path.txt
 
 GREEN       := \033[1;32m
 BLUE        := \033[1;34m
@@ -24,12 +24,12 @@ install:
 	@echo "$(GREEN) -> Installation Complete!$(RESET)"
 
 run:
-	@echo "$(BLUE) -> Running $(MAIN) with $(FILE) $(RESET)"
-	@PYGAME_HIDE_SUPPORT_PROMPT=1 $(POETRY) run $(PYTHON) $(MAIN) $(FILE)
+	@echo "$(BLUE) -> Running $(MAIN) with $(MAP) $(RESET)"
+	@PYGAME_HIDE_SUPPORT_PROMPT=1 $(POETRY) run $(PYTHON) $(MAIN) $(MAP)
 
 debug:
 	@echo "$(BLUE) -> Starting the debugger (PDB) $(RESET)"
-	@PYGAME_HIDE_SUPPORT_PROMPT=1 $(POETRY) run $(PYTHON) -m pdb $(MAIN) $(FILE)
+	@PYGAME_HIDE_SUPPORT_PROMPT=1 $(POETRY) run $(PYTHON) -m pdb $(MAIN) $(MAP)
 
 clean:
 	@echo "$(YELLOW) -> Deleting Temporary Files and Cache $(RESET)"

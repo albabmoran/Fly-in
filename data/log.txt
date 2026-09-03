@@ -1,8 +1,4 @@
-D1-junction D2-start D3-start D4-start D5-start
-D1-correct_path D2-junction D3-start D4-start D5-start
-D1-intermediate D2-correct_path D3-junction D4-start D5-start
-D1-end D2-intermediate D3-correct_path D4-junction D5-start
-D2-end D3-intermediate D4-correct_path D5-junction
-D3-end D4-intermediate D5-correct_path
-D4-end D5-intermediate
-D5-end
+D1-waypoint1 D2-start
+D1-waypoint2 D2-waypoint1
+D1-end D2-waypoint2
+D2-end

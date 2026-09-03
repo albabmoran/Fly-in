@@ -1,5 +1,5 @@
 {
-    "nb_drones": 5,
+    "nb_drones": 2,
     "hub": {
         "start": {
             "coord": [
@@ -8,30 +8,20 @@
             ],
             "zone": "normal",
             "color": "green",
-            "max_drones": 5,
+            "max_drones": 2,
             "line": 4
         },
-        "junction": {
+        "waypoint1": {
             "coord": [
                 1,
                 0
             ],
             "zone": "normal",
-            "color": "yellow",
-            "max_drones": 2,
+            "color": "blue",
+            "max_drones": 1,
             "line": 5
         },
-        "dead_end": {
-            "coord": [
-                1,
-                1
-            ],
-            "zone": "normal",
-            "color": "red",
-            "max_drones": 1,
-            "line": 6
-        },
-        "correct_path": {
+        "waypoint2": {
             "coord": [
                 2,
                 0
@@ -39,59 +29,37 @@
             "zone": "normal",
             "color": "blue",
             "max_drones": 1,
-            "line": 7
+            "line": 6
         },
-        "intermediate": {
+        "end": {
             "coord": [
                 3,
                 0
             ],
             "zone": "normal",
-            "color": "blue",
-            "max_drones": 1,
-            "line": 8
-        },
-        "end": {
-            "coord": [
-                4,
-                0
-            ],
-            "zone": "normal",
-            "color": "green",
-            "max_drones": 5,
-            "line": 9
+            "color": "red",
+            "max_drones": 2,
+            "line": 7
         }
     },
     "connection": {
         "1": {
             "zone_a": "start",
-            "zone_b": "junction",
-            "max_link_capacity": 2,
-            "line": 11
+            "zone_b": "waypoint1",
+            "max_link_capacity": 1,
+            "line": 9
         },
         "2": {
-            "zone_a": "junction",
-            "zone_b": "dead_end",
+            "zone_a": "waypoint1",
+            "zone_b": "waypoint2",
             "max_link_capacity": 1,
-            "line": 12
+            "line": 10
         },
         "3": {
-            "zone_a": "junction",
-            "zone_b": "correct_path",
-            "max_link_capacity": 1,
-            "line": 13
-        },
-        "4": {
-            "zone_a": "correct_path",
-            "zone_b": "intermediate",
-            "max_link_capacity": 1,
-            "line": 14
-        },
-        "5": {
-            "zone_a": "intermediate",
+            "zone_a": "waypoint2",
             "zone_b": "end",
             "max_link_capacity": 1,
-            "line": 15
+            "line": 11
         }
     }
 }
