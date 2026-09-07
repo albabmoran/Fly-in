@@ -4,6 +4,14 @@ from visualization import GraphRepresentation
 
 
 def main() -> None:
+    """
+    Run the complete Fly-in application workflow.
+
+    Parses and validates the input map, prepares the connection data,
+    runs the drone pathfinding simulation, and starts the graphical
+    representation of the results.
+    """
+
     # Parse .txt file
     ParseMap()
     SaveMap()

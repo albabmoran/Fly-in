@@ -5,11 +5,34 @@ import pygame
 
 
 class DroneManager:
+    """
+    Manages the visual representation and animation of the drones.
+
+    Stores the position, movement state, orientation and color of each
+    drone and controls its animation throughout the simulation turns.
+    """
 
     def __init__(self, screen: pygame.Surface, data: dict[str, Any],
                  turns: dict[str, Any],
                  node_coords: dict[str, tuple[int, int]],
                  drone_size: int) -> None:
+        """
+        Initializes the drone manager.
+
+        Args:
+            screen: Pygame surface where the drones are rendered.
+            data: Map data containing information such as the number of
+                drones.
+            turns: Simulation results containing the movements performed
+                by each drone on every turn.
+            node_coords: Dictionary mapping node names to their screen
+                coordinates.
+            drone_size: Size used when drawing each drone.
+
+        Returns:
+            None
+        """
+
         self.screen = screen
         self.data = data
         self.turns = turns
@@ -40,7 +63,15 @@ class DroneManager:
             self.animation_finished = True
 
     def create_drones(self) -> None:
-        """Create all drones at the starting hub."""
+        """
+        Creates all drones at the starting hub.
+
+        Initializes each drone's position, orientation and randomly
+        assigned display color.
+
+        Returns:
+            None
+        """
 
         nb_drones: int = self.data["nb_drones"]
         start_coord = self.node_coords["start"]
@@ -54,7 +85,15 @@ class DroneManager:
 
     def prepare_turn(self) -> None:
         """
-        Prepare the positions and targets for the current turn.
+        Prepares the positions and targets for the current turn.
+
+        Reads the movements scheduled for the current turn and calculates
+        the target position of each drone. Drones entering a restricted
+        hub are positioned halfway between their origin and destination
+        to represent their transit state.
+
+        Returns:
+            None
         """
 
         turn_data = self.turns[str(self.current_turn)]
@@ -92,7 +131,17 @@ class DroneManager:
 
     def update(self, dt: float) -> None:
         """
-        Update the position of every drone during the current turn.
+        Updates the position of every drone during the current turn.
+
+        Advances the animation according to the elapsed time and
+        interpolates each drone's position between its starting and target
+        positions. When the turn reaches its end, the next turn is started.
+
+        Args:
+            dt: Time elapsed since the previous update, in seconds.
+
+        Returns:
+            None
         """
 
         if self.animation_finished or self.paused:
@@ -108,7 +157,6 @@ class DroneManager:
             start_x, start_y = start
             target_x, target_y = target
 
-            # Linear interpolation between start and target.
             x = (start_x
                  + (target_x - start_x) * self.turn_progress)
             y = (start_y
@@ -120,8 +168,14 @@ class DroneManager:
 
     def finish_turn(self) -> None:
         """
-        Save the final positions of the current turn
-        and prepare the next one.
+        Completes the current turn and prepares the next one.
+
+        Sets all drones to their final positions for the current turn,
+        advances the turn counter and prepares the next turn if one exists.
+        If there are no more turns, the animation is marked as finished.
+
+        Returns:
+            None
         """
 
         for drone in self.drone_pos:
@@ -136,12 +190,25 @@ class DroneManager:
         self.prepare_turn()
 
     def toggle_pause(self) -> None:
-        """Pause or resume the animation."""
+        """
+        Pauses or resumes the animation.
+
+        Returns:
+            None
+        """
 
         self.paused = not self.paused
 
     def restart(self) -> None:
-        """Restart the animation from the beginning."""
+        """
+        Restarts the animation from the beginning.
+
+        Resets every drone to the starting hub, resets the turn counter
+        and animation state, and prepares the first turn.
+
+        Returns:
+            None
+        """
 
         start = self.node_coords["start"]
         for drone in self.drone_pos:
@@ -159,10 +226,14 @@ class DroneManager:
 
     def next_turn(self) -> None:
         """
-        Advance directly to the next turn.
+        Advances directly to the next simulation turn.
 
-        The current turn is completed immediately and the
-        following turn is prepared.
+        Immediately completes the current turn, moves all drones to their
+        target positions and prepares the following turn. The animation is
+        paused after advancing.
+
+        Returns:
+            None
         """
 
         if self.animation_finished:
@@ -181,10 +252,17 @@ class DroneManager:
 
     def previous_turn(self) -> None:
         """
-        Go back one turn.
+        Moves back to the previous simulation turn.
 
-        The animation is reconstructed from the beginning
-        until the desired turn.
+        Reconstructs the drone positions from the beginning of the
+        simulation until reaching the requested turn, then prepares that
+        turn for display.
+
+        If the current turn is the first turn, the animation is restarted
+        and paused.
+
+        Returns:
+            None
         """
 
         valid_turns = [int(turn) for turn in self.turns]
@@ -215,7 +293,15 @@ class DroneManager:
         self.paused = True
 
     def reset_positions(self) -> None:
-        """Put every drone back at the start."""
+        """
+        Resets all drones to the starting hub.
+
+        Resets the current, starting and target positions of every drone,
+        as well as their orientation.
+
+        Returns:
+            None
+        """
 
         start_pos = self.node_coords["start"]
 
@@ -229,7 +315,21 @@ class DroneManager:
 
     def draw_drone(self, position: tuple[float, float],
                    angle: float, color: str) -> None:
-        """Draw one drone as a triangle."""
+        """
+        Draws a single drone as a rotated triangle.
+
+        Calculates the coordinates of the triangle's vertices after
+        applying the specified rotation and draws the resulting polygon
+        on the Pygame surface.
+
+        Args:
+            position: Screen coordinates where the drone is drawn.
+            angle: Rotation angle of the drone in radians.
+            color: Color used to fill the drone.
+
+        Returns:
+            None
+        """
 
         x, y = position
         size = self.drone_size
@@ -246,7 +346,15 @@ class DroneManager:
         pygame.draw.polygon(self.screen, "white", rotated_points, 1)
 
     def draw(self) -> None:
-        """Draw all drones."""
+        """
+        Draws all drones on the Pygame surface.
+
+        Uses each drone's current position, orientation and assigned color
+        to render it on the screen.
+
+        Returns:
+            None
+        """
 
         for drone in self.drone_pos:
             position = self.drone_pos[drone]

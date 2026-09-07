@@ -6,20 +6,69 @@ import re
 
 
 class FormatError(Exception):
+    """
+    Exception raised when the format of the map data is invalid.
+    """
+
     pass
 
 
 class Formatter(Protocol):
+    """
+    Protocol defining the interface for data formatters.
+    """
+
     @staticmethod
     def format(name: str, data: list[str],
                metadata: list[str], line: int) -> dict[str, Any]:
+        """
+        Formats parsed data into a dictionary.
+
+        Args:
+            name: Name or type of the element being formatted.
+            data: Main data fields extracted from the input line.
+            metadata: Additional metadata fields extracted from the input
+                line.
+            line: Line number where the data was found.
+
+        Returns:
+            A dictionary containing the formatted data.
+        """
+
         pass
 
 
 class FormatHub:
+    """
+    Formats hub information extracted from the input map file
+    """
+
     @staticmethod
     def format(name: str, data: list[str],
                metadata: list[str], line: int) -> dict[str, Any]:
+        """
+        Formats hub data into a dictionary.
+
+        Start and end hubs are assigned the names ``start`` and ``end``,
+        respectively. Regular hubs use the name provided in the input data.
+        Coordinates and supported metadata are also added to the resulting
+        dictionary.
+
+        Args:
+            name: Type of hub being formatted, such as ``hub``,
+                ``start_hub`` or ``end_hub``.
+            data: Main hub data, including its name and coordinates.
+            metadata: Additional hub metadata, such as color, zone or
+                maximum number of drones.
+            line: Line number where the hub was found.
+
+        Returns:
+            A dictionary containing the formatted hub information.
+
+        Raises:
+            FormatError: If an unknown metadata key is found.
+            IndexError: If required hub information is missing.
+        """
         info: dict[str, Any] = {}
 
         try:
@@ -40,7 +89,7 @@ class FormatHub:
                     info['max_drones'] = v
                 else:
                     raise FormatError(f"ERROR (line {line}):"
-                                      " unknown key ({k})")
+                                      f" unknown key ({k})")
 
         except IndexError:
             print(f"ERROR (line {line}): missing required info",
@@ -54,16 +103,42 @@ class FormatHub:
 
 
 class FormatCon:
+    """
+    Formats connection information extracted from the input map file.
+    """
+
     @staticmethod
     def format(name: str, data: list[str],
                metadata: list[str], line: int) -> dict[str, Any]:
+        """
+        Formats connection data into a dictionary.
+
+        The connection is split into its two connected zones and its
+        supported metadata is added to the resulting dictionary.
+
+        Args:
+            name: Name assigned to the connection.
+            data: Connection data containing the two connected zones.
+            metadata: Additional connection metadata, such as maximum
+                link capacity.
+            line: Line number where the connection was found.
+
+        Returns:
+            A dictionary containing the formatted connection information.
+
+        Raises:
+            FormatError: If the zones are not connected using '-' or if
+                an unknown metadata key is found.
+            IndexError: If required connection information is missing.
+        """
+
         info: dict[str, Any] = {}
 
         try:
             info['name'] = name
             if "-" not in data[0]:
                 raise FormatError(f"ERROR (line {line}):"
-                                  " zones should be connected by '-")
+                                  " zones should be connected by '-'")
             info['zone_a'], info['zone_b'] = data[0].split('-')
             for i in range(0, len(metadata)):
                 k, v = metadata[i].split('=')
@@ -71,7 +146,7 @@ class FormatCon:
                     info['max_link_capacity'] = v
                 else:
                     raise FormatError(f"ERROR (line {line}):"
-                                      " unknown key ({k})")
+                                      f" unknown key ({k})")
         except IndexError:
             print(f"ERROR (line {line}): missing required info",
                   file=sys.stderr)
@@ -84,7 +159,23 @@ class FormatCon:
 
 
 class ParseMap:
+    """
+    Parses and validates the input map file.
+
+    The parser reads the input file specified through the command line,
+    validates its structure, processes each line according to its type,
+    and creates the corresponding hubs and connections.
+    """
+
     def __init__(self) -> None:
+        """
+        Initializes the map parser.
+
+        Initializes the number of drones, the number of connections, the
+        input file contents and the current line number before starting
+        the parsing and validation process.
+        """
+
         self.nb_drones: int = 0
         self.nb_con: int = 0
         self.content: list[str]
@@ -92,6 +183,20 @@ class ParseMap:
         self.read_and_validate()
 
     def read_and_validate(self) -> None:
+        """
+        Reads the input file and validates its structure.
+
+        Checks that exactly one input file is provided through the command
+        line, reads its contents, validates the required 'nb_drones' line,
+        and processes each non-empty, non-comment line.
+
+        Returns:
+            None
+
+        Raises:
+            OSError: If the input file cannot be read.
+        """
+
         if len(sys.argv) != 2:
             print("ERROR: invalid number of arguments. "
                   "<Usage: python3 fly-in.py *txt>", file=sys.stderr)
@@ -139,6 +244,30 @@ class ParseMap:
             self.line += 1
 
     def process_line(self, key: str, info: str) -> None:
+        """
+        Processes a single line of parsed map data.
+
+        Identifies the type of element represented by the line, extracts
+        metadata when present, formats the information, and creates the
+        corresponding 'Hub' or 'Connection' object.
+
+        Args:
+            key: Element type specified at the beginning of the line.
+                Supported values include 'nb_drones', 'hub',
+                'start_hub', 'end_hub' and 'connection'.
+            info: Information associated with the element, including its
+                main data and optional metadata.
+
+        Returns:
+            None
+
+        Raises:
+            ValidationError: If the formatted data does not satisfy the
+                validation rules defined by the corresponding Pydantic
+                model.
+            ValueError: If the number of drones is not a positive integer.
+        """
+
         try:
             if key == "nb_drones":
                 v = int(info)
@@ -182,7 +311,7 @@ class ParseMap:
                     Connection(con_info)
             else:
                 print(f"ERROR (line {self.line}):"
-                      " undefined key ({key})", file=sys.stderr)
+                      f" undefined key ({key})", file=sys.stderr)
                 sys.exit(1)
 
         except ValidationError as e:
