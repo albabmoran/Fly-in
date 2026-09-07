@@ -1,30 +1,74 @@
 {
     "start": [
-        "loop_a"
+        "gate1",
+        "gate2",
+        "gate3"
     ],
-    "loop_a": [
+    "gate1": [
         "start",
-        "loop_b",
-        "loop_d"
+        "gate2",
+        "waiting_area1"
     ],
-    "loop_b": [
-        "loop_a",
-        "loop_c",
-        "exit_point"
+    "gate2": [
+        "start",
+        "gate1",
+        "gate3",
+        "waiting_area2"
     ],
-    "loop_c": [
-        "loop_b",
-        "loop_d"
+    "gate3": [
+        "start",
+        "gate2",
+        "waiting_area3",
+        "restricted_tunnel1"
     ],
-    "loop_d": [
-        "loop_c",
-        "loop_a"
+    "waiting_area1": [
+        "gate1",
+        "waiting_area2",
+        "priority_bypass1"
     ],
-    "exit_point": [
-        "loop_b",
+    "waiting_area2": [
+        "gate2",
+        "waiting_area1",
+        "waiting_area3",
+        "priority_bypass2"
+    ],
+    "waiting_area3": [
+        "gate3",
+        "waiting_area2",
+        "convergence"
+    ],
+    "restricted_tunnel1": [
+        "gate3",
+        "restricted_tunnel2"
+    ],
+    "restricted_tunnel2": [
+        "restricted_tunnel1",
+        "restricted_tunnel3"
+    ],
+    "restricted_tunnel3": [
+        "restricted_tunnel2",
+        "convergence"
+    ],
+    "convergence": [
+        "restricted_tunnel3",
+        "priority_bypass2",
+        "final_bottleneck",
+        "waiting_area3"
+    ],
+    "priority_bypass1": [
+        "waiting_area1",
+        "priority_bypass2"
+    ],
+    "priority_bypass2": [
+        "waiting_area2",
+        "priority_bypass1",
+        "convergence"
+    ],
+    "final_bottleneck": [
+        "convergence",
         "end"
     ],
     "end": [
-        "exit_point"
+        "final_bottleneck"
     ]
 }

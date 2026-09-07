@@ -164,14 +164,14 @@ class ParseMap:
                             self.content[i] = self.content[i].replace(
                                 c_change, "-start")
                     if key == "end_hub":
-                        n_change: str = ' ' + info.split()[0] + ' '
-                        c_change: str = '-' + info.split()[0]
+                        na_change: str = ' ' + info.split()[0] + ' '
+                        co_change: str = '-' + info.split()[0]
                         for i in range(0, len(self.content)):
                             self.content[i] = self.content[i].replace(
-                                n_change, "end")
+                                na_change, "end")
                         for i in range(0, len(self.content)):
                             self.content[i] = self.content[i].replace(
-                                c_change, "-end")
+                                co_change, "-end")
                     hub_info['nb_drones'] = self.nb_drones
                     Hub(hub_info, line=self.line)
                 else:

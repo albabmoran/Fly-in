@@ -1,119 +1,283 @@
 {
-    "nb_drones": 6,
+    "nb_drones": 12,
     "hub": {
         "start": {
             "coord": [
                 0,
-                0
+                -1
             ],
             "zone": "normal",
             "color": "green",
-            "max_drones": 6,
+            "max_drones": 12,
             "line": 4
         },
-        "loop_a": {
+        "gate1": {
             "coord": [
                 1,
                 0
             ],
             "zone": "normal",
             "color": "orange",
-            "max_drones": 2,
+            "max_drones": 1,
             "line": 5
         },
-        "loop_b": {
+        "gate2": {
             "coord": [
                 2,
                 0
             ],
             "zone": "normal",
             "color": "orange",
-            "max_drones": 2,
+            "max_drones": 1,
             "line": 6
         },
-        "loop_c": {
-            "coord": [
-                2,
-                1
-            ],
-            "zone": "normal",
-            "color": "orange",
-            "max_drones": 2,
-            "line": 7
-        },
-        "loop_d": {
-            "coord": [
-                1,
-                1
-            ],
-            "zone": "normal",
-            "color": "orange",
-            "max_drones": 2,
-            "line": 8
-        },
-        "exit_point": {
+        "gate3": {
             "coord": [
                 3,
                 0
             ],
-            "zone": "restricted",
-            "color": "blue",
+            "zone": "normal",
+            "color": "orange",
             "max_drones": 1,
+            "line": 7
+        },
+        "waiting_area1": {
+            "coord": [
+                1,
+                1
+            ],
+            "zone": "normal",
+            "color": "blue",
+            "max_drones": 4,
+            "line": 8
+        },
+        "waiting_area2": {
+            "coord": [
+                2,
+                1
+            ],
+            "zone": "normal",
+            "color": "blue",
+            "max_drones": 4,
             "line": 9
         },
-        "end": {
+        "waiting_area3": {
+            "coord": [
+                3,
+                1
+            ],
+            "zone": "normal",
+            "color": "blue",
+            "max_drones": 4,
+            "line": 10
+        },
+        "restricted_tunnel1": {
             "coord": [
                 4,
                 0
             ],
-            "zone": "normal",
+            "zone": "restricted",
             "color": "red",
+            "max_drones": 2,
+            "line": 11
+        },
+        "restricted_tunnel2": {
+            "coord": [
+                5,
+                0
+            ],
+            "zone": "restricted",
+            "color": "red",
+            "max_drones": 2,
+            "line": 12
+        },
+        "restricted_tunnel3": {
+            "coord": [
+                6,
+                0
+            ],
+            "zone": "restricted",
+            "color": "red",
+            "max_drones": 2,
+            "line": 13
+        },
+        "priority_bypass1": {
+            "coord": [
+                3,
+                2
+            ],
+            "zone": "priority",
+            "color": "cyan",
+            "max_drones": 3,
+            "line": 14
+        },
+        "priority_bypass2": {
+            "coord": [
+                4,
+                2
+            ],
+            "zone": "priority",
+            "color": "cyan",
+            "max_drones": 3,
+            "line": 15
+        },
+        "convergence": {
+            "coord": [
+                7,
+                0
+            ],
+            "zone": "normal",
+            "color": "yellow",
             "max_drones": 6,
-            "line": 10
+            "line": 16
+        },
+        "final_bottleneck": {
+            "coord": [
+                8,
+                0
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 3,
+            "line": 17
+        },
+        "end": {
+            "coord": [
+                9,
+                0
+            ],
+            "zone": "normal",
+            "color": "green",
+            "max_drones": 12,
+            "line": 18
         }
     },
     "connection": {
         "1": {
             "zone_a": "start",
-            "zone_b": "loop_a",
-            "max_link_capacity": 2,
-            "line": 12
+            "zone_b": "gate1",
+            "max_link_capacity": 1,
+            "line": 21
         },
         "2": {
-            "zone_a": "loop_a",
-            "zone_b": "loop_b",
-            "max_link_capacity": 2,
-            "line": 13
+            "zone_a": "start",
+            "zone_b": "gate2",
+            "max_link_capacity": 1,
+            "line": 22
         },
         "3": {
-            "zone_a": "loop_b",
-            "zone_b": "loop_c",
-            "max_link_capacity": 2,
-            "line": 14
+            "zone_a": "start",
+            "zone_b": "gate3",
+            "max_link_capacity": 1,
+            "line": 23
         },
         "4": {
-            "zone_a": "loop_c",
-            "zone_b": "loop_d",
-            "max_link_capacity": 2,
-            "line": 15
+            "zone_a": "gate1",
+            "zone_b": "gate2",
+            "max_link_capacity": 1,
+            "line": 24
         },
         "5": {
-            "zone_a": "loop_d",
-            "zone_b": "loop_a",
-            "max_link_capacity": 2,
-            "line": 16
+            "zone_a": "gate2",
+            "zone_b": "gate3",
+            "max_link_capacity": 1,
+            "line": 25
         },
         "6": {
-            "zone_a": "loop_b",
-            "zone_b": "exit_point",
+            "zone_a": "gate1",
+            "zone_b": "waiting_area1",
             "max_link_capacity": 1,
-            "line": 17
+            "line": 28
         },
         "7": {
-            "zone_a": "exit_point",
+            "zone_a": "gate2",
+            "zone_b": "waiting_area2",
+            "max_link_capacity": 1,
+            "line": 29
+        },
+        "8": {
+            "zone_a": "gate3",
+            "zone_b": "waiting_area3",
+            "max_link_capacity": 1,
+            "line": 30
+        },
+        "9": {
+            "zone_a": "waiting_area1",
+            "zone_b": "waiting_area2",
+            "max_link_capacity": 1,
+            "line": 31
+        },
+        "10": {
+            "zone_a": "waiting_area2",
+            "zone_b": "waiting_area3",
+            "max_link_capacity": 1,
+            "line": 32
+        },
+        "11": {
+            "zone_a": "gate3",
+            "zone_b": "restricted_tunnel1",
+            "max_link_capacity": 1,
+            "line": 35
+        },
+        "12": {
+            "zone_a": "restricted_tunnel1",
+            "zone_b": "restricted_tunnel2",
+            "max_link_capacity": 1,
+            "line": 36
+        },
+        "13": {
+            "zone_a": "restricted_tunnel2",
+            "zone_b": "restricted_tunnel3",
+            "max_link_capacity": 1,
+            "line": 37
+        },
+        "14": {
+            "zone_a": "restricted_tunnel3",
+            "zone_b": "convergence",
+            "max_link_capacity": 1,
+            "line": 38
+        },
+        "15": {
+            "zone_a": "waiting_area1",
+            "zone_b": "priority_bypass1",
+            "max_link_capacity": 1,
+            "line": 41
+        },
+        "16": {
+            "zone_a": "waiting_area2",
+            "zone_b": "priority_bypass2",
+            "max_link_capacity": 1,
+            "line": 42
+        },
+        "17": {
+            "zone_a": "priority_bypass1",
+            "zone_b": "priority_bypass2",
+            "max_link_capacity": 1,
+            "line": 43
+        },
+        "18": {
+            "zone_a": "priority_bypass2",
+            "zone_b": "convergence",
+            "max_link_capacity": 2,
+            "line": 44
+        },
+        "19": {
+            "zone_a": "convergence",
+            "zone_b": "final_bottleneck",
+            "max_link_capacity": 3,
+            "line": 47
+        },
+        "20": {
+            "zone_a": "final_bottleneck",
             "zone_b": "end",
             "max_link_capacity": 1,
-            "line": 18
+            "line": 48
+        },
+        "21": {
+            "zone_a": "waiting_area3",
+            "zone_b": "convergence",
+            "max_link_capacity": 1,
+            "line": 51
         }
     }
 }

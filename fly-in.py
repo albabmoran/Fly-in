@@ -1,5 +1,6 @@
 from parsing import ParseMap, SaveMap, ParseCon
 from pathfinding import StateMachine
+from visualization import GraphRepresentation
 
 
 def main() -> None:
@@ -12,6 +13,9 @@ def main() -> None:
 
     # Pathfinding
     StateMachine()
+
+    # Visualization
+    GraphRepresentation()
 
 
 if __name__ == "__main__":

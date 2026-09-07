@@ -1,11 +1,16 @@
-D1-loop_a
-D1-loop_b D2-loop_a
-D1-loop_b-exit_point D2-loop_b D3-loop_a
-D1-exit_point D2-loop_b D3-loop_b D4-loop_a
-D1-end D2-loop_b-exit_point D3-loop_b-exit_point D4-loop_b D5-loop_a
-D2-exit_point D3-exit_point D4-loop_b D5-loop_b D6-loop_a
-D2-end D3-exit_point D4-loop_b-exit_point D5-loop_b D6-loop_b
-D3-end D4-exit_point D5-loop_b-exit_point D6-loop_b
-D4-end D5-exit_point D6-loop_b-exit_point
-D5-end D6-exit_point
-D6-end
+D1-gate3
+D1-waiting_area3 D2-gate3
+D1-convergence D2-waiting_area3 D3-gate3
+D1-final_bottleneck D2-convergence D3-waiting_area3 D4-gate3
+D1-end D2-final_bottleneck D3-convergence D4-waiting_area3 D5-gate3
+D2-end D3-final_bottleneck D4-convergence D5-waiting_area3 D6-gate3
+D3-end D4-final_bottleneck D5-convergence D6-waiting_area3 D7-gate3
+D4-end D5-final_bottleneck D6-convergence D7-waiting_area3 D8-gate3
+D5-end D6-final_bottleneck D7-convergence D8-waiting_area3 D9-gate3
+D6-end D7-final_bottleneck D8-convergence D9-waiting_area3 D10-gate3
+D7-end D8-final_bottleneck D9-convergence D10-waiting_area3 D11-gate3
+D8-end D9-final_bottleneck D10-convergence D11-waiting_area3 D12-gate3
+D9-end D10-final_bottleneck D11-convergence D12-waiting_area3
+D10-end D11-final_bottleneck D12-convergence
+D11-end D12-final_bottleneck
+D12-end

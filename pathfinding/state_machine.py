@@ -3,6 +3,7 @@ from parsing import FormatError
 from .drone import Drone
 from .move import Move
 from typing import Any
+import json
 
 
 class StateMachine:
@@ -29,6 +30,7 @@ class StateMachine:
             self.turn += 1
             self.simulation()
         self.convert_to_txt()
+        self.convert_to_json()
         print(f'\033[32;1m    Map solved in {self.turn} turns'
               ', movements saved in data/log.txt\033[0m')
 
@@ -165,3 +167,7 @@ class StateMachine:
                     drones.append(f"D{id}-{data['hub']}")
                 lines.append(" ".join(drones))
             f.write("\n".join(lines))
+
+    def convert_to_json(self) -> None:
+        with open("data/turns.json", 'w', encoding='utf-8') as f:
+            json.dump(self.result, f, indent=4)
