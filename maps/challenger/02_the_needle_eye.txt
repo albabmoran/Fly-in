@@ -1,0 +1,58 @@
+# CHALLENGER LEVEL: THE NEEDLE EYE
+# Large drone swarm requiring precise timing to pass a single-drone choke node.
+
+nb_drones: 28
+
+start_hub: start 0 0 [color=green]
+
+hub: stage_a 1 2 [color=blue max_drones=5]
+hub: stage_b 1 0 [color=blue max_drones=5]
+hub: stage_c 1 -2 [color=blue max_drones=5]
+
+hub: stage_a2 2 2 [color=purple max_drones=4]
+hub: stage_b2 2 0 [color=purple max_drones=4]
+hub: stage_c2 2 -2 [color=purple max_drones=4]
+
+hub: eye 3 0 [color=red max_drones=1]
+
+hub: overflow_loop1 3 3 [zone=restricted color=brown max_drones=3]
+hub: overflow_loop2 4 3 [zone=restricted color=brown max_drones=3]
+hub: overflow_loop3 4 2 [zone=restricted color=brown max_drones=3]
+
+hub: expansion1 4 0 [zone=priority color=cyan max_drones=4]
+hub: expansion2 4 -1 [zone=priority color=cyan max_drones=4]
+
+hub: gate1 5 1 [color=orange max_drones=2]
+hub: gate2 5 0 [color=orange max_drones=2]
+hub: gate3 5 -1 [color=orange max_drones=2]
+
+end_hub: goal 6 0 [color=rainbow]
+
+connection: start-stage_a [max_link_capacity=4]
+connection: start-stage_b [max_link_capacity=4]
+connection: start-stage_c [max_link_capacity=4]
+
+connection: stage_a-stage_a2
+connection: stage_b-stage_b2
+connection: stage_c-stage_c2
+
+connection: stage_a2-eye [max_link_capacity=1]
+connection: stage_b2-eye [max_link_capacity=1]
+connection: stage_c2-eye [max_link_capacity=1]
+
+connection: stage_a2-overflow_loop1
+connection: overflow_loop1-overflow_loop2
+connection: overflow_loop2-overflow_loop3
+connection: overflow_loop3-stage_a2
+
+connection: eye-expansion1 [max_link_capacity=1]
+connection: eye-expansion2 [max_link_capacity=1]
+
+connection: expansion1-gate1
+connection: expansion1-gate2
+connection: expansion2-gate2
+connection: expansion2-gate3
+
+connection: gate1-goal [max_link_capacity=2]
+connection: gate2-goal [max_link_capacity=2]
+connection: gate3-goal [max_link_capacity=2]

@@ -1,0 +1,47 @@
+# CHALLENGER LEVEL: OUROBOROS PROTOCOL
+# Diseñado para atrapar algoritmos "greedy" o A* estándar.
+# Ofrece un bucle infinito de zonas de prioridad con un coste aparente bajísimo.
+# La única ruta real es un laberinto restringido de altísimo coste.
+
+nb_drones: 40
+
+start_hub: start 0 0 [color=green]
+
+# La trampa dorada (El Ouroboros)
+hub: trap_prio1 2 2 [zone=priority color=gold max_drones=10]
+hub: trap_prio2 4 2 [zone=priority color=gold max_drones=10]
+hub: trap_prio3 4 -2 [zone=priority color=gold max_drones=10]
+hub: trap_prio4 2 -2 [zone=priority color=gold max_drones=10]
+hub: trap_exit 3 0 [zone=priority color=gold max_drones=1]
+
+# La ruta real (El calvario)
+hub: real_hell1 1 0 [zone=restricted color=darkred max_drones=2]
+hub: real_hell2 1 4 [zone=restricted color=darkred max_drones=1]
+hub: real_hell3 5 4 [zone=restricted color=darkred max_drones=1]
+hub: real_hell4 5 0 [zone=restricted color=darkred max_drones=1]
+hub: real_hell5 5 -4 [zone=restricted color=darkred max_drones=1]
+hub: real_hell6 1 -4 [zone=restricted color=darkred max_drones=2]
+
+# El abismo (Falso final)
+hub: fake_goal 6 0 [color=black max_drones=40]
+
+end_hub: goal 8 0 [color=rainbow]
+
+# Conexiones de la trampa
+connection: start-trap_prio1 [max_link_capacity=10]
+connection: trap_prio1-trap_prio2 [max_link_capacity=10]
+connection: trap_prio2-trap_prio3 [max_link_capacity=10]
+connection: trap_prio3-trap_prio4 [max_link_capacity=10]
+connection: trap_prio4-trap_prio1 [max_link_capacity=10]
+connection: trap_prio2-trap_exit
+connection: trap_exit-fake_goal
+
+# Conexiones reales (Cuello de botella brutal)
+connection: start-real_hell1 [max_link_capacity=2]
+connection: real_hell1-real_hell2 [max_link_capacity=1]
+connection: real_hell2-real_hell3 [max_link_capacity=1]
+connection: real_hell3-real_hell4 [max_link_capacity=1]
+connection: real_hell4-real_hell5 [max_link_capacity=1]
+connection: real_hell5-real_hell6 [max_link_capacity=1]
+connection: real_hell6-goal [max_link_capacity=2]
+connection: real_hell4-goal [max_link_capacity=1]

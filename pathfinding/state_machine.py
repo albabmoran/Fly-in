@@ -29,6 +29,8 @@ class StateMachine:
             self.turn += 1
             self.simulation()
         self.convert_to_txt()
+        print(f'\033[32;1m    Map solved in {self.turn} turns'
+              ', movements saved in data/log.txt\033[0m')
 
     def connection_conflict(self, start: str, target: str,
                             turn_movement: list[dict[str, Any]]) -> bool:
@@ -109,6 +111,8 @@ class StateMachine:
                 self.result[self.turn][drone.id] = {
                     "movement": drone.movement.value,
                     "hub": f'{drone.pos}-{drone.target}'}
+            elif drone.pos == 'start':
+                continue
             else:
                 self.result[self.turn][drone.id] = {
                     "movement": drone.movement.value,

@@ -155,13 +155,23 @@ class ParseMap:
                     hub_info: dict[str, Any] = FormatHub.format(
                         key, info.split(), metadata, self.line)
                     if key == "start_hub":
+                        n_change: str = ' ' + info.split()[0] + ' '
+                        c_change: str = '-' + info.split()[0]
                         for i in range(0, len(self.content)):
                             self.content[i] = self.content[i].replace(
-                                info.split()[0], "start")
+                                n_change, "start")
+                        for i in range(0, len(self.content)):
+                            self.content[i] = self.content[i].replace(
+                                c_change, "-start")
                     if key == "end_hub":
+                        n_change: str = ' ' + info.split()[0] + ' '
+                        c_change: str = '-' + info.split()[0]
                         for i in range(0, len(self.content)):
                             self.content[i] = self.content[i].replace(
-                                info.split()[0], "end")
+                                n_change, "end")
+                        for i in range(0, len(self.content)):
+                            self.content[i] = self.content[i].replace(
+                                c_change, "-end")
                     hub_info['nb_drones'] = self.nb_drones
                     Hub(hub_info, line=self.line)
                 else:

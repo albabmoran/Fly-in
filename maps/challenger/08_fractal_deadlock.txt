@@ -1,0 +1,52 @@
+# CHALLENGER LEVEL: FRACTAL DEADLOCK
+# Múltiples capas de decisiones binarias. Solo 1 de las 16 rutas finales 
+# conecta con el objetivo. El resto colapsa en zonas muertas de capacidad 1.
+
+nb_drones: 20
+
+start_hub: start 0 0 [color=green]
+
+# Capa 1
+hub: split_a 1 2 [color=blue max_drones=10]
+hub: split_b 1 -2 [color=blue max_drones=10]
+
+# Capa 2
+hub: split_aa 2 3 [color=purple max_drones=5]
+hub: split_ab 2 1 [color=purple max_drones=5]
+hub: split_ba 2 -1 [color=purple max_drones=5]
+hub: split_bb 2 -3 [color=purple max_drones=5]
+
+# Capa 3 (Las trampas)
+hub: trap_1 3 4 [color=red max_drones=1]
+hub: trap_2 3 3 [color=red max_drones=1]
+hub: trap_3 3 2 [color=red max_drones=1]
+hub: trap_4 3 1 [color=red max_drones=1]
+hub: true_path 3 0 [zone=restricted color=lime max_drones=2]
+hub: trap_5 3 -1 [color=red max_drones=1]
+hub: trap_6 3 -2 [color=red max_drones=1]
+hub: trap_7 3 -3 [color=red max_drones=1]
+
+# Filtro final
+hub: final_filter 4 0 [zone=priority color=cyan max_drones=1]
+
+end_hub: goal 5 0 [color=rainbow]
+
+connection: start-split_a
+connection: start-split_b
+
+connection: split_a-split_aa
+connection: split_a-split_ab
+connection: split_b-split_ba
+connection: split_b-split_bb
+
+connection: split_aa-trap_1
+connection: split_aa-trap_2
+connection: split_ab-trap_3
+connection: split_ab-trap_4
+connection: split_ba-true_path
+connection: split_ba-trap_5
+connection: split_bb-trap_6
+connection: split_bb-trap_7
+
+connection: true_path-final_filter [max_link_capacity=1]
+connection: final_filter-goal [max_link_capacity=1]

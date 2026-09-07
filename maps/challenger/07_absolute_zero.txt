@@ -1,0 +1,49 @@
+# CHALLENGER LEVEL: ABSOLUTE ZERO
+# El terror logístico puro. Una matriz donde casi cada nodo y cada enlace 
+# tiene capacidad 1. Cualquier mal cálculo de timing causará un bloqueo en cadena.
+
+nb_drones: 15
+
+start_hub: start 0 0 [color=green]
+
+hub: grid_0_1 1 1 [color=red max_drones=1]
+hub: grid_0_2 1 0 [color=red max_drones=1]
+hub: grid_0_3 1 -1 [color=red max_drones=1]
+
+hub: grid_1_1 2 1 [color=red max_drones=1]
+hub: grid_1_2 2 0 [color=red max_drones=1]
+hub: grid_1_3 2 -1 [color=red max_drones=1]
+
+hub: grid_2_1 3 1 [color=red max_drones=1]
+hub: grid_2_2 3 0 [color=red max_drones=1]
+hub: grid_2_3 3 -1 [color=red max_drones=1]
+
+hub: grid_3_1 4 1 [color=red max_drones=1]
+hub: grid_3_2 4 0 [color=red max_drones=1]
+hub: grid_3_3 4 -1 [color=red max_drones=1]
+
+end_hub: goal 5 0 [color=rainbow]
+
+connection: start-grid_0_1 [max_link_capacity=1]
+connection: start-grid_0_2 [max_link_capacity=1]
+connection: start-grid_0_3 [max_link_capacity=1]
+
+connection: grid_0_1-grid_1_1 [max_link_capacity=1]
+connection: grid_0_1-grid_1_2 [max_link_capacity=1]
+connection: grid_0_2-grid_1_2 [max_link_capacity=1]
+connection: grid_0_3-grid_1_3 [max_link_capacity=1]
+connection: grid_0_3-grid_1_2 [max_link_capacity=1]
+
+connection: grid_1_1-grid_2_1 [max_link_capacity=1]
+connection: grid_1_2-grid_2_2 [max_link_capacity=1]
+connection: grid_1_3-grid_2_3 [max_link_capacity=1]
+connection: grid_1_1-grid_2_2 [max_link_capacity=1]
+connection: grid_1_3-grid_2_2 [max_link_capacity=1]
+
+connection: grid_2_1-grid_3_1 [max_link_capacity=1]
+connection: grid_2_2-grid_3_2 [max_link_capacity=1]
+connection: grid_2_3-grid_3_3 [max_link_capacity=1]
+
+connection: grid_3_1-goal [max_link_capacity=1]
+connection: grid_3_2-goal [max_link_capacity=1]
+connection: grid_3_3-goal [max_link_capacity=1]

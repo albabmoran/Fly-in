@@ -1,16 +1,30 @@
 {
     "start": [
-        "waypoint1"
+        "loop_a"
     ],
-    "waypoint1": [
+    "loop_a": [
         "start",
-        "waypoint2"
+        "loop_b",
+        "loop_d"
     ],
-    "waypoint2": [
-        "waypoint1",
+    "loop_b": [
+        "loop_a",
+        "loop_c",
+        "exit_point"
+    ],
+    "loop_c": [
+        "loop_b",
+        "loop_d"
+    ],
+    "loop_d": [
+        "loop_c",
+        "loop_a"
+    ],
+    "exit_point": [
+        "loop_b",
         "end"
     ],
     "end": [
-        "waypoint2"
+        "exit_point"
     ]
 }

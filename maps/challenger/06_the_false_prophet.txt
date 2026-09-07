@@ -1,0 +1,46 @@
+# CHALLENGER LEVEL: THE FALSE PROPHET
+# Una autopista masiva y rápida que acomoda a casi todos los drones, pero termina
+# en un callejón sin salida absoluto. Los algoritmos mal diseñados meterán a todos
+# los drones aquí y causarán un gridlock irresoluble al intentar dar la vuelta.
+
+nb_drones: 50
+
+start_hub: start 0 0 [color=green]
+
+# Autopista del falso profeta
+hub: highway1 2 0 [zone=priority color=cyan max_drones=20]
+hub: highway2 4 0 [zone=priority color=cyan max_drones=20]
+hub: highway3 6 0 [zone=priority color=cyan max_drones=20]
+hub: dead_end_massive 8 0 [color=black max_drones=50]
+
+# El desfiladero estrecho (Ruta verdadera)
+hub: narrow1 1 2 [color=orange max_drones=1]
+hub: narrow2 3 2 [color=orange max_drones=1]
+hub: narrow3 5 2 [color=orange max_drones=1]
+hub: narrow4 7 2 [color=orange max_drones=1]
+
+hub: narrow_s1 1 -2 [color=orange max_drones=1]
+hub: narrow_s2 3 -2 [color=orange max_drones=1]
+hub: narrow_s3 5 -2 [color=orange max_drones=1]
+hub: narrow_s4 7 -2 [color=orange max_drones=1]
+
+end_hub: goal 9 0 [color=rainbow]
+
+# Conexiones de la trampa mortal
+connection: start-highway1 [max_link_capacity=20]
+connection: highway1-highway2 [max_link_capacity=20]
+connection: highway2-highway3 [max_link_capacity=20]
+connection: highway3-dead_end_massive [max_link_capacity=50]
+
+# Conexiones de la ruta tortuosa
+connection: start-narrow1 [max_link_capacity=1]
+connection: narrow1-narrow2 [max_link_capacity=1]
+connection: narrow2-narrow3 [max_link_capacity=1]
+connection: narrow3-narrow4 [max_link_capacity=1]
+connection: narrow4-goal [max_link_capacity=1]
+
+connection: start-narrow_s1 [max_link_capacity=1]
+connection: narrow_s1-narrow_s2 [max_link_capacity=1]
+connection: narrow_s2-narrow_s3 [max_link_capacity=1]
+connection: narrow_s3-narrow_s4 [max_link_capacity=1]
+connection: narrow_s4-goal [max_link_capacity=1]

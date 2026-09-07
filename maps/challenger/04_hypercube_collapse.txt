@@ -1,0 +1,50 @@
+# CHALLENGER LEVEL: HYPERCUBE COLLAPSE
+# Multi-layered mesh graph with severe capacity bottlenecks to stress pathfinding heuristics.
+
+nb_drones: 35
+
+start_hub: start 0 0 [color=green]
+
+hub: l1_1 1 2 [color=yellow max_drones=3]
+hub: l1_2 1 0 [color=yellow max_drones=3]
+hub: l1_3 1 -2 [color=yellow max_drones=3]
+
+hub: l2_1 2 3 [zone=restricted color=red max_drones=2]
+hub: l2_2 2 1 [zone=priority color=cyan max_drones=2]
+hub: l2_3 2 -1 [zone=priority color=cyan max_drones=2]
+hub: l2_4 2 -3 [zone=restricted color=red max_drones=2]
+
+hub: l3_1 3 2 [color=blue max_drones=2]
+hub: l3_2 3 0 [color=red max_drones=1]
+hub: l3_3 3 -2 [color=blue max_drones=2]
+
+hub: l4_1 4 1 [zone=priority color=lime max_drones=3]
+hub: l4_2 4 -1 [zone=priority color=lime max_drones=3]
+
+end_hub: goal 5 0 [color=gold]
+
+connection: start-l1_1 [max_link_capacity=3]
+connection: start-l1_2 [max_link_capacity=3]
+connection: start-l1_3 [max_link_capacity=3]
+
+connection: l1_1-l2_1
+connection: l1_1-l2_2
+connection: l1_2-l2_2
+connection: l1_2-l2_3
+connection: l1_3-l2_3
+connection: l1_3-l2_4
+
+connection: l2_1-l3_1
+connection: l2_2-l3_1
+connection: l2_2-l3_2 [max_link_capacity=1]
+connection: l2_3-l3_2 [max_link_capacity=1]
+connection: l2_3-l3_3
+connection: l2_4-l3_3
+
+connection: l3_1-l4_1
+connection: l3_2-l4_1
+connection: l3_2-l4_2
+connection: l3_3-l4_2
+
+connection: l4_1-goal [max_link_capacity=2]
+connection: l4_2-goal [max_link_capacity=2]

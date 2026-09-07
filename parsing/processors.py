@@ -37,7 +37,8 @@ class Processor(abc.ABC):
                 con['zone_a'] not in self.map['hub']
                 or con['zone_b'] not in self.map['hub']
             ):
-                raise FormatError("ERROR: trying to connect unknown hub")
+                raise FormatError("ERROR: trying to connect unknown hub"
+                                  f" ({con['zone_a']}, {con['zone_b']})")
 
     def convert_to_json(self) -> None:
         with open("data/map.json", 'w', encoding='utf-8') as f:

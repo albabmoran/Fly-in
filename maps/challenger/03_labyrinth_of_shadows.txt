@@ -1,0 +1,70 @@
+# CHALLENGER LEVEL: LABYRINTH OF SHADOWS
+# Deep nested loops, dead ends, and dynamic zone switching.
+
+nb_drones: 30
+
+start_hub: start 0 0 [color=green]
+
+hub: shadow_a1 1 3 [color=purple]
+hub: shadow_a2 2 3 [color=purple]
+hub: shadow_dead1 3 3 [color=black]
+
+hub: shadow_b1 1 -3 [color=purple]
+hub: shadow_b2 2 -3 [color=purple]
+hub: shadow_dead2 3 -3 [color=black]
+
+hub: core_in1 1 1 [color=blue max_drones=3]
+hub: core_in2 1 -1 [color=blue max_drones=3]
+
+hub: loop_n1 2 1 [zone=restricted color=darkred max_drones=2]
+hub: loop_n2 3 1 [zone=restricted color=darkred max_drones=2]
+hub: loop_n3 3 2 [zone=restricted color=darkred max_drones=2]
+hub: loop_n4 2 2 [zone=restricted color=darkred max_drones=2]
+
+hub: prio_tunnel1 2 0 [zone=priority color=gold max_drones=1]
+hub: prio_tunnel2 3 0 [zone=priority color=gold max_drones=1]
+hub: prio_tunnel3 4 0 [zone=priority color=gold max_drones=1]
+
+hub: loop_s1 2 -1 [zone=restricted color=darkred max_drones=2]
+hub: loop_s2 3 -1 [zone=restricted color=darkred max_drones=2]
+
+hub: final_choke1 5 1 [color=crimson max_drones=2]
+hub: final_choke2 5 -1 [color=crimson max_drones=2]
+hub: final_merge 6 0 [color=magenta max_drones=4]
+
+end_hub: goal 7 0 [color=rainbow]
+
+connection: start-shadow_a1
+connection: shadow_a1-shadow_a2
+connection: shadow_a2-shadow_dead1
+
+connection: start-shadow_b1
+connection: shadow_b1-shadow_b2
+connection: shadow_b2-shadow_dead2
+
+connection: start-core_in1 [max_link_capacity=3]
+connection: start-core_in2 [max_link_capacity=3]
+
+connection: core_in1-loop_n1
+connection: loop_n1-loop_n2
+connection: loop_n2-loop_n3
+connection: loop_n3-loop_n4
+connection: loop_n4-loop_n1
+
+connection: core_in1-prio_tunnel1 [max_link_capacity=1]
+connection: core_in2-prio_tunnel1 [max_link_capacity=1]
+connection: prio_tunnel1-prio_tunnel2 [max_link_capacity=1]
+connection: prio_tunnel2-prio_tunnel3 [max_link_capacity=1]
+
+connection: core_in2-loop_s1
+connection: loop_s1-loop_s2
+connection: loop_s2-prio_tunnel2
+
+connection: loop_n2-final_choke1
+connection: prio_tunnel3-final_choke1
+connection: prio_tunnel3-final_choke2
+connection: loop_s2-final_choke2
+
+connection: final_choke1-final_merge [max_link_capacity=2]
+connection: final_choke2-final_merge [max_link_capacity=2]
+connection: final_merge-goal [max_link_capacity=2]

@@ -1,4 +1,11 @@
-D1-waypoint1 D2-start
-D1-waypoint2 D2-waypoint1
-D1-end D2-waypoint2
-D2-end
+D1-loop_a
+D1-loop_b D2-loop_a
+D1-loop_b-exit_point D2-loop_b D3-loop_a
+D1-exit_point D2-loop_b D3-loop_b D4-loop_a
+D1-end D2-loop_b-exit_point D3-loop_b-exit_point D4-loop_b D5-loop_a
+D2-exit_point D3-exit_point D4-loop_b D5-loop_b D6-loop_a
+D2-end D3-exit_point D4-loop_b-exit_point D5-loop_b D6-loop_b
+D3-end D4-exit_point D5-loop_b-exit_point D6-loop_b
+D4-end D5-exit_point D6-loop_b-exit_point
+D5-end D6-exit_point
+D6-end

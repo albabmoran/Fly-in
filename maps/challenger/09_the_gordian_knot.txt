@@ -1,0 +1,47 @@
+# CHALLENGER LEVEL: THE GORDIAN KNOT
+# Enredos de rutas con prioridades cruzadas. Zonas restringidas gigantes
+# que parecen inevitables, y un bypass microscópico que colapsará si se
+# abusa de él. Pone a prueba la gestión dinámica de enrutamiento múltiple.
+
+nb_drones: 60
+
+start_hub: start 0 0 [color=green]
+
+# El Nudo
+hub: knot_center 2 0 [zone=restricted color=brown max_drones=5]
+hub: knot_n 2 2 [zone=restricted color=brown max_drones=5]
+hub: knot_s 2 -2 [zone=restricted color=brown max_drones=5]
+hub: knot_e 3 0 [zone=restricted color=brown max_drones=5]
+hub: knot_w 1 0 [zone=restricted color=brown max_drones=5]
+
+# Micro Bypass
+hub: bypass_entry 1 4 [zone=priority color=gold max_drones=1]
+hub: bypass_exit 3 4 [zone=priority color=gold max_drones=1]
+
+# Zonas de desbordamiento punitivas
+hub: overflow_n 2 5 [color=black max_drones=30]
+hub: overflow_s 2 -5 [color=black max_drones=30]
+
+# Convergencia masiva
+hub: funnel 4 0 [color=orange max_drones=3]
+
+end_hub: goal 6 0 [color=rainbow]
+
+connection: start-knot_w [max_link_capacity=5]
+connection: start-knot_n [max_link_capacity=5]
+connection: start-knot_s [max_link_capacity=5]
+connection: start-bypass_entry [max_link_capacity=1]
+
+connection: bypass_entry-bypass_exit [max_link_capacity=1]
+connection: bypass_exit-funnel [max_link_capacity=1]
+
+connection: knot_w-knot_center
+connection: knot_n-knot_center
+connection: knot_s-knot_center
+connection: knot_center-knot_e
+
+connection: knot_n-overflow_n
+connection: knot_s-overflow_s
+
+connection: knot_e-funnel [max_link_capacity=3]
+connection: funnel-goal [max_link_capacity=3]

@@ -1,0 +1,194 @@
+# CHALLENGER LEVEL: OMEGA SINGULARITY
+#
+# MAP SPECIFICATION:
+# - Swarm Size: 100 Drones
+# - Design Objective: Break naive pathfinding, greedy A*, and uncoordinated CBS.
+# - Primary Mechanisms: 
+#     1. Massive Priority Siren Traps (Heuristic poison leading to total dead-end gridlock).
+#     2. Dual Interlocking Permutation Cycles (Explodes CBS branching factor to O(2^N)).
+#     3. Synchronized Holding Rings (Requires space-time reservation & phase-shift timing).
+#     4. 10-Stage Single-File Gauntlet (Absolutist flow control: max_drones=1, max_link_capacity=1).
+
+nb_drones: 100
+
+# === LAYER 0: STARTING POINT ===
+start_hub: start 0 0 [color=green]
+
+# === LAYER 1 & 2: THE SIREN TRAPS (Greedy/A* Poison) ===
+# Priority zones with huge capacity attract naive heuristics, but end in dead sinks.
+hub: siren_prio_top1 1 6 [zone=priority color=cyan max_drones=40]
+hub: siren_prio_top2 3 8 [zone=priority color=cyan max_drones=40]
+hub: siren_dead_sink_top 5 10 [color=black max_drones=100]
+
+hub: siren_prio_bot1 1 -6 [zone=priority color=cyan max_drones=40]
+hub: siren_prio_bot2 3 -8 [zone=priority color=cyan max_drones=40]
+hub: siren_dead_sink_bot 5 -10 [color=black max_drones=100]
+
+# === LAYER 1 & 2: THE TRUE NARROW ENTRY ===
+hub: entry_pipe1 1 0 [color=orange max_drones=2]
+hub: entry_pipe2 2 0 [color=orange max_drones=2]
+hub: entry_pipe3 3 0 [color=orange max_drones=2]
+
+# === LAYER 3 - 5: DUAL INTERLOCKING HELIX CYCLES ===
+# Fast priority loop vs Slow restricted loop with cross-links.
+# Creates infinite loop traps and exponential state space expansion.
+hub: helix_top1 4 2 [zone=priority color=blue max_drones=1]
+hub: helix_top2 5 2 [zone=priority color=blue max_drones=1]
+hub: helix_top3 6 2 [zone=priority color=blue max_drones=1]
+hub: helix_top4 7 2 [zone=priority color=blue max_drones=1]
+
+hub: helix_mid1 4 0 [color=yellow max_drones=1]
+hub: helix_mid2 5 0 [color=yellow max_drones=1]
+hub: helix_mid3 6 0 [color=yellow max_drones=1]
+hub: helix_mid4 7 0 [color=yellow max_drones=1]
+
+hub: helix_bot1 4 -2 [zone=restricted color=purple max_drones=3]
+hub: helix_bot2 5 -2 [zone=restricted color=purple max_drones=3]
+hub: helix_bot3 6 -2 [zone=restricted color=purple max_drones=3]
+hub: helix_bot4 7 -2 [zone=restricted color=purple max_drones=3]
+
+# === LAYER 6 - 9: SYNCHRONIZED HOLDING RINGS & TIMING GATES ===
+# Drones MUST orbit these rings to stagger arrival times before entering the single-file choke.
+hub: ring_top_1 8 4 [zone=restricted color=brown max_drones=5]
+hub: ring_top_2 9 5 [zone=restricted color=brown max_drones=5]
+hub: ring_top_3 10 4 [zone=restricted color=brown max_drones=5]
+hub: ring_top_4 9 3 [zone=restricted color=brown max_drones=5]
+
+hub: ring_bot_1 8 -4 [zone=restricted color=brown max_drones=5]
+hub: ring_bot_2 9 -5 [zone=restricted color=brown max_drones=5]
+hub: ring_bot_3 10 -4 [zone=restricted color=brown max_drones=5]
+hub: ring_bot_4 9 -3 [zone=restricted color=brown max_drones=5]
+
+# Timing Valves
+hub: valve_alpha 8 0 [color=red max_drones=1]
+hub: valve_beta 9 0 [color=red max_drones=1]
+hub: valve_gamma 10 0 [color=red max_drones=1]
+
+# === LAYER 10 - 13: FALSE LIGHT GATES & CRITICAL MESH ===
+hub: false_gate_1 11 4 [zone=priority color=cyan max_drones=30]
+hub: false_gate_2 12 4 [zone=priority color=cyan max_drones=30]
+hub: false_sink_mid 13 5 [color=black max_drones=100]
+
+hub: true_mesh_1a 11 1 [color=blue max_drones=1]
+hub: true_mesh_1b 11 -1 [color=blue max_drones=1]
+hub: true_mesh_2a 12 1 [color=blue max_drones=1]
+hub: true_mesh_2b 12 -1 [color=blue max_drones=1]
+hub: true_mesh_3a 13 1 [color=blue max_drones=1]
+hub: true_mesh_3b 13 -1 [color=blue max_drones=1]
+
+# === LAYER 14 - 23: THE GAUNTLET OF ABSOLUTE FLOW ===
+# 10 consecutive capacity-1 nodes. Zero margin for timing errors.
+hub: choke_01 14 0 [color=magenta max_drones=1]
+hub: choke_02 15 0 [color=magenta max_drones=1]
+hub: choke_03 16 0 [color=magenta max_drones=1]
+hub: choke_04 17 0 [color=magenta max_drones=1]
+hub: choke_05 18 0 [color=magenta max_drones=1]
+hub: choke_06 19 0 [color=magenta max_drones=1]
+hub: choke_07 20 0 [color=magenta max_drones=1]
+hub: choke_08 21 0 [color=magenta max_drones=1]
+hub: choke_09 22 0 [color=magenta max_drones=1]
+hub: choke_10 23 0 [color=magenta max_drones=1]
+
+# === LAYER 24 - 25: FINAL BUFFER AND GOAL ===
+hub: final_expansion 24 0 [color=yellow max_drones=20]
+end_hub: goal 25 0 [color=gold]
+
+# ==============================================================================
+# CONNECTIONS AND CAPACITY CONSTRAINTS
+# ==============================================================================
+
+# Siren Trap Connections
+connection: start-siren_prio_top1 [max_link_capacity=20]
+connection: siren_prio_top1-siren_prio_top2 [max_link_capacity=20]
+connection: siren_prio_top2-siren_dead_sink_top [max_link_capacity=40]
+
+connection: start-siren_prio_bot1 [max_link_capacity=20]
+connection: siren_prio_bot1-siren_prio_bot2 [max_link_capacity=20]
+connection: siren_prio_bot2-siren_dead_sink_bot [max_link_capacity=40]
+
+# Real Entry Pipe
+connection: start-entry_pipe1 [max_link_capacity=2]
+connection: entry_pipe1-entry_pipe2 [max_link_capacity=2]
+connection: entry_pipe2-entry_pipe3 [max_link_capacity=2]
+
+# Helix Cycle Connections
+connection: entry_pipe3-helix_top1 [max_link_capacity=1]
+connection: entry_pipe3-helix_mid1 [max_link_capacity=1]
+connection: entry_pipe3-helix_bot1 [max_link_capacity=2]
+
+connection: helix_top1-helix_top2 [max_link_capacity=1]
+connection: helix_top2-helix_top3 [max_link_capacity=1]
+connection: helix_top3-helix_top4 [max_link_capacity=1]
+connection: helix_top4-helix_top1 [max_link_capacity=1] # Loop back
+
+connection: helix_mid1-helix_mid2 [max_link_capacity=1]
+connection: helix_mid2-helix_mid3 [max_link_capacity=1]
+connection: helix_mid3-helix_mid4 [max_link_capacity=1]
+
+connection: helix_bot1-helix_bot2 [max_link_capacity=2]
+connection: helix_bot2-helix_bot3 [max_link_capacity=2]
+connection: helix_bot3-helix_bot4 [max_link_capacity=2]
+connection: helix_bot4-helix_bot1 [max_link_capacity=2] # Loop back
+
+# Helix Interconnections (Cross-talk)
+connection: helix_top2-helix_mid2 [max_link_capacity=1]
+connection: helix_mid2-helix_bot2 [max_link_capacity=1]
+connection: helix_bot3-helix_mid3 [max_link_capacity=1]
+connection: helix_mid3-helix_top3 [max_link_capacity=1]
+
+# Feed into Holding Rings and Valves
+connection: helix_top4-ring_top_1 [max_link_capacity=2]
+connection: helix_mid4-valve_alpha [max_link_capacity=1]
+connection: helix_bot4-ring_bot_1 [max_link_capacity=2]
+
+# Top Holding Ring (Clockwise)
+connection: ring_top_1-ring_top_2 [max_link_capacity=3]
+connection: ring_top_2-ring_top_3 [max_link_capacity=3]
+connection: ring_top_3-ring_top_4 [max_link_capacity=3]
+connection: ring_top_4-ring_top_1 [max_link_capacity=3]
+connection: ring_top_3-valve_beta [max_link_capacity=1]
+
+# Bottom Holding Ring (Counter-Clockwise)
+connection: ring_bot_1-ring_bot_2 [max_link_capacity=3]
+connection: ring_bot_2-ring_bot_3 [max_link_capacity=3]
+connection: ring_bot_3-ring_bot_4 [max_link_capacity=3]
+connection: ring_bot_4-ring_bot_1 [max_link_capacity=3]
+connection: ring_bot_3-valve_beta [max_link_capacity=1]
+
+# Valves Sequence
+connection: valve_alpha-valve_beta [max_link_capacity=1]
+connection: valve_beta-valve_gamma [max_link_capacity=1]
+
+# False Light Trap vs True Mesh
+connection: valve_gamma-false_gate_1 [max_link_capacity=15]
+connection: false_gate_1-false_gate_2 [max_link_capacity=15]
+connection: false_gate_2-false_sink_mid [max_link_capacity=30]
+
+connection: valve_gamma-true_mesh_1a [max_link_capacity=1]
+connection: valve_gamma-true_mesh_1b [max_link_capacity=1]
+
+connection: true_mesh_1a-true_mesh_2a [max_link_capacity=1]
+connection: true_mesh_1a-true_mesh_2b [max_link_capacity=1]
+connection: true_mesh_1b-true_mesh_2a [max_link_capacity=1]
+connection: true_mesh_1b-true_mesh_2b [max_link_capacity=1]
+
+connection: true_mesh_2a-true_mesh_3a [max_link_capacity=1]
+connection: true_mesh_2b-true_mesh_3b [max_link_capacity=1]
+
+connection: true_mesh_3a-choke_01 [max_link_capacity=1]
+connection: true_mesh_3b-choke_01 [max_link_capacity=1]
+
+# Gauntlet Single-File Pipeline
+connection: choke_01-choke_02 [max_link_capacity=1]
+connection: choke_02-choke_03 [max_link_capacity=1]
+connection: choke_03-choke_04 [max_link_capacity=1]
+connection: choke_04-choke_05 [max_link_capacity=1]
+connection: choke_05-choke_06 [max_link_capacity=1]
+connection: choke_06-choke_07 [max_link_capacity=1]
+connection: choke_07-choke_08 [max_link_capacity=1]
+connection: choke_08-choke_09 [max_link_capacity=1]
+connection: choke_09-choke_10 [max_link_capacity=1]
+
+# Final Stretch
+connection: choke_10-final_expansion [max_link_capacity=5]
+connection: final_expansion-goal [max_link_capacity=5]

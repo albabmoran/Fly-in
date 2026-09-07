@@ -1,5 +1,5 @@
 {
-    "nb_drones": 2,
+    "nb_drones": 6,
     "hub": {
         "start": {
             "coord": [
@@ -8,58 +8,112 @@
             ],
             "zone": "normal",
             "color": "green",
-            "max_drones": 2,
+            "max_drones": 6,
             "line": 4
         },
-        "waypoint1": {
+        "loop_a": {
             "coord": [
                 1,
                 0
             ],
             "zone": "normal",
-            "color": "blue",
-            "max_drones": 1,
+            "color": "orange",
+            "max_drones": 2,
             "line": 5
         },
-        "waypoint2": {
+        "loop_b": {
             "coord": [
                 2,
                 0
             ],
             "zone": "normal",
-            "color": "blue",
-            "max_drones": 1,
+            "color": "orange",
+            "max_drones": 2,
             "line": 6
         },
-        "end": {
+        "loop_c": {
+            "coord": [
+                2,
+                1
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 2,
+            "line": 7
+        },
+        "loop_d": {
+            "coord": [
+                1,
+                1
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 2,
+            "line": 8
+        },
+        "exit_point": {
             "coord": [
                 3,
                 0
             ],
+            "zone": "restricted",
+            "color": "blue",
+            "max_drones": 1,
+            "line": 9
+        },
+        "end": {
+            "coord": [
+                4,
+                0
+            ],
             "zone": "normal",
             "color": "red",
-            "max_drones": 2,
-            "line": 7
+            "max_drones": 6,
+            "line": 10
         }
     },
     "connection": {
         "1": {
             "zone_a": "start",
-            "zone_b": "waypoint1",
-            "max_link_capacity": 1,
-            "line": 9
+            "zone_b": "loop_a",
+            "max_link_capacity": 2,
+            "line": 12
         },
         "2": {
-            "zone_a": "waypoint1",
-            "zone_b": "waypoint2",
-            "max_link_capacity": 1,
-            "line": 10
+            "zone_a": "loop_a",
+            "zone_b": "loop_b",
+            "max_link_capacity": 2,
+            "line": 13
         },
         "3": {
-            "zone_a": "waypoint2",
+            "zone_a": "loop_b",
+            "zone_b": "loop_c",
+            "max_link_capacity": 2,
+            "line": 14
+        },
+        "4": {
+            "zone_a": "loop_c",
+            "zone_b": "loop_d",
+            "max_link_capacity": 2,
+            "line": 15
+        },
+        "5": {
+            "zone_a": "loop_d",
+            "zone_b": "loop_a",
+            "max_link_capacity": 2,
+            "line": 16
+        },
+        "6": {
+            "zone_a": "loop_b",
+            "zone_b": "exit_point",
+            "max_link_capacity": 1,
+            "line": 17
+        },
+        "7": {
+            "zone_a": "exit_point",
             "zone_b": "end",
             "max_link_capacity": 1,
-            "line": 11
+            "line": 18
         }
     }
 }

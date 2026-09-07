@@ -1,0 +1,41 @@
+# CHALLENGER LEVEL: CHRONOS VORTEX
+# Juega con los tiempos de simulación. Forzará a enrutar drones hacia rutas de
+# espera (holding patterns) porque la vía principal se estrangula al final.
+# Si el algoritmo no "mira hacia el futuro", los drones chocarán en el centro.
+
+nb_drones: 45
+
+start_hub: start 0 0 [color=green]
+
+# Zona de aceleración temprana
+hub: accel_1 1 0 [zone=priority color=cyan max_drones=10]
+hub: accel_2 2 0 [zone=priority color=cyan max_drones=10]
+hub: accel_3 3 0 [zone=priority color=cyan max_drones=10]
+
+# El vórtice (Patrones de espera requeridos)
+hub: hold_1a 2 2 [zone=restricted color=purple max_drones=5]
+hub: hold_1b 3 2 [zone=restricted color=purple max_drones=5]
+hub: hold_2a 2 -2 [zone=restricted color=purple max_drones=5]
+hub: hold_2b 3 -2 [zone=restricted color=purple max_drones=5]
+
+# Cuello de botella temporal severo
+hub: chrono_gate 4 0 [color=red max_drones=1]
+hub: chrono_gate2 5 0 [color=red max_drones=1]
+
+end_hub: goal 7 0 [color=rainbow]
+
+connection: start-accel_1 [max_link_capacity=10]
+connection: accel_1-accel_2 [max_link_capacity=10]
+connection: accel_2-accel_3 [max_link_capacity=10]
+
+connection: accel_1-hold_1a
+connection: hold_1a-hold_1b
+connection: hold_1b-accel_3
+
+connection: accel_1-hold_2a
+connection: hold_2a-hold_2b
+connection: hold_2b-accel_3
+
+connection: accel_3-chrono_gate [max_link_capacity=1]
+connection: chrono_gate-chrono_gate2 [max_link_capacity=1]
+connection: chrono_gate2-goal [max_link_capacity=1]
