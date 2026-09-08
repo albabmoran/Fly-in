@@ -18,9 +18,6 @@ class Drone:
             id: Unique identifier of the drone.
             path: Ordered list of nodes that the drone must traverse.
             cost: Initial movement cost available to the drone.
-
-        Returns:
-            None
         """
 
         self.id: int = id
@@ -55,9 +52,6 @@ class Drone:
 
         Args:
             target: Name of the node the drone is travelling towards.
-
-        Returns:
-            None
         """
 
         self.target = target
@@ -72,9 +66,6 @@ class Drone:
         Moves the drone to its target node, clears its transit state and
         updates its movement status. If the target is the end node, the
         drone is marked as finished.
-
-        Returns:
-            None
 
         Raises:
             ValueError: If the drone is in transit without a target node.
@@ -100,9 +91,6 @@ class Drone:
 
         Args:
             target: Name of the node where the drone will move.
-
-        Returns:
-            None
         """
 
         self.pos = target

@@ -31,9 +31,6 @@ class ParseCon():
 
         Reads the map information stored in 'data/map.json' and saves it
         in the 'data' instance attribute.
-
-        Returns:
-            None
         """
 
         with open("data/map.json", 'r', encoding='utf-8') as f:
@@ -46,9 +43,6 @@ class ParseCon():
         Each connection is represented in both directions. For example, if
         zone A is connected to zone B, then B is added to A's list of
         connections and A is added to B's list.
-
-        Returns:
-            None
         """
 
         for c in self.data['connection'].values():
@@ -67,9 +61,7 @@ class ParseCon():
 
         Writes the adjacency dictionary stored in 'connections' to
         'data/connections.json' using an indented JSON format.
-
-        Returns:
-            None
         """
+
         with open("data/connections.json", 'w', encoding='utf-8') as f:
             json.dump(self.connections, f, indent=4)

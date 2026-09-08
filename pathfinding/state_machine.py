@@ -39,9 +39,6 @@ class StateMachine:
 
         Each drone is initialized with a copy of the shortest path and
         its corresponding movement cost.
-
-        Returns:
-            None
         """
 
         cost, path = self.setup.get_shortest_path()
@@ -56,9 +53,6 @@ class StateMachine:
         Initializes the drones and executes one simulation step per turn.
         Once all drones have finished, the results are saved to both a text
         log file and a JSON file.
-
-        Returns:
-            None
         """
 
         self.instantiate_drones()
@@ -209,9 +203,6 @@ class StateMachine:
             drone: Drone that will perform the movement.
             turn_movement: List containing the movements already scheduled
                 for the current turn.
-
-        Returns:
-            None
         """
 
         target = drone.get_next_node()
@@ -236,9 +227,6 @@ class StateMachine:
         Args:
             finished_drones: Drones that have completed their path and
                 should not be included in the current turn's output.
-
-        Returns:
-            None
         """
 
         self.result[self.turn] = {}
@@ -268,9 +256,6 @@ class StateMachine:
 
         After all drones have been processed, the result of the current
         turn is saved.
-
-        Returns:
-            None
         """
 
         turn_movement: list[dict[str, Any]] = []
@@ -316,9 +301,6 @@ class StateMachine:
 
         Converts the stored turn results into the expected drone movement
         format and writes them to 'data/log.txt'.
-
-        Returns:
-            None
         """
 
         with open("data/log.txt", "w", encoding="utf-8") as f:
@@ -336,9 +318,6 @@ class StateMachine:
 
         Writes the turn-by-turn simulation results to
         'data/turns.json' using an indented JSON format.
-
-        Returns:
-            None
         """
 
         with open("data/turns.json", 'w', encoding='utf-8') as f:

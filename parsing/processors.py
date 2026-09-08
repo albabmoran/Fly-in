@@ -46,9 +46,6 @@ class Processor(abc.ABC):
 
         This method must be implemented by subclasses to define how their
         processed data is stored in the map.
-
-        Returns:
-            None
         """
 
         pass
@@ -59,9 +56,6 @@ class Processor(abc.ABC):
 
         Checks that the map contains both a start and an end hub and that
         every connection references hubs that exist in the map.
-
-        Returns:
-            None
 
         Raises:
             FormatError: If the map has no start hub, no end hub, or a
@@ -86,9 +80,6 @@ class Processor(abc.ABC):
 
         Writes the shared map data to ``data/map.json`` using an indented
         JSON format.
-
-        Returns:
-            None
         """
 
         with open("data/map.json", 'w', encoding='utf-8') as f:
@@ -129,9 +120,6 @@ class Hub(BaseModel, Processor):
                 initialization process.
             **kwargs: Additional keyword arguments, including the line
                 number associated with the hub.
-
-        Returns:
-            None
         """
 
         line = kwargs.get('line', 'Unknown')
@@ -213,10 +201,8 @@ class Hub(BaseModel, Processor):
 
         Stores the hub data in the 'hub' section of the map and updates
         the total number of drones stored in the map.
-
-        Returns:
-            None
         """
+
         data = {self.name: self.model_dump(mode='json',
                                            exclude={'name', 'nb_drones'})}
         self.map['hub'].update(data)
@@ -245,9 +231,6 @@ class Connection(BaseModel, Processor):
         Args:
             info: Dictionary containing the connection information to
                 validate.
-
-        Returns:
-            None
         """
 
         super().__init__(**info)
@@ -284,9 +267,6 @@ class Connection(BaseModel, Processor):
 
         Stores the connection information in the 'connection' section
         of the shared map.
-
-        Returns:
-            None
         """
 
         data = {self.name: self.model_dump(exclude={'name'})}
@@ -305,9 +285,6 @@ class SaveMap(Processor):
     def __init__(self) -> None:
         """
         Validates the map and saves it to the JSON output file.
-
-        Returns:
-            None
         """
 
         self.check_map()
@@ -319,8 +296,6 @@ class SaveMap(Processor):
 
         'SaveMap' does not ingest individual objects because its purpose
         is to validate and save the complete map.
-
-        Returns:
-            None
         """
+
         pass

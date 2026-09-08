@@ -12,17 +12,13 @@ def main() -> None:
     representation of the results.
     """
 
-    # Parse .txt file
     ParseMap()
     SaveMap()
 
-    # Parse connections for pathfinding
     ParseCon()
 
-    # Pathfinding
     StateMachine()
 
-    # Visualization
     GraphRepresentation()
 
 

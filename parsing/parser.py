@@ -190,9 +190,6 @@ class ParseMap:
         line, reads its contents, validates the required 'nb_drones' line,
         and processes each non-empty, non-comment line.
 
-        Returns:
-            None
-
         Raises:
             OSError: If the input file cannot be read.
         """
@@ -257,9 +254,6 @@ class ParseMap:
                 'start_hub', 'end_hub' and 'connection'.
             info: Information associated with the element, including its
                 main data and optional metadata.
-
-        Returns:
-            None
 
         Raises:
             ValidationError: If the formatted data does not satisfy the

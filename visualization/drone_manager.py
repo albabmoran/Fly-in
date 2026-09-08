@@ -28,9 +28,6 @@ class DroneManager:
             node_coords: Dictionary mapping node names to their screen
                 coordinates.
             drone_size: Size used when drawing each drone.
-
-        Returns:
-            None
         """
 
         self.screen = screen
@@ -68,9 +65,6 @@ class DroneManager:
 
         Initializes each drone's position, orientation and randomly
         assigned display color.
-
-        Returns:
-            None
         """
 
         nb_drones: int = self.data["nb_drones"]
@@ -91,9 +85,6 @@ class DroneManager:
         the target position of each drone. Drones entering a restricted
         hub are positioned halfway between their origin and destination
         to represent their transit state.
-
-        Returns:
-            None
         """
 
         turn_data = self.turns[str(self.current_turn)]
@@ -139,9 +130,6 @@ class DroneManager:
 
         Args:
             dt: Time elapsed since the previous update, in seconds.
-
-        Returns:
-            None
         """
 
         if self.animation_finished or self.paused:
@@ -173,9 +161,6 @@ class DroneManager:
         Sets all drones to their final positions for the current turn,
         advances the turn counter and prepares the next turn if one exists.
         If there are no more turns, the animation is marked as finished.
-
-        Returns:
-            None
         """
 
         for drone in self.drone_pos:
@@ -192,9 +177,6 @@ class DroneManager:
     def toggle_pause(self) -> None:
         """
         Pauses or resumes the animation.
-
-        Returns:
-            None
         """
 
         self.paused = not self.paused
@@ -205,9 +187,6 @@ class DroneManager:
 
         Resets every drone to the starting hub, resets the turn counter
         and animation state, and prepares the first turn.
-
-        Returns:
-            None
         """
 
         start = self.node_coords["start"]
@@ -231,9 +210,6 @@ class DroneManager:
         Immediately completes the current turn, moves all drones to their
         target positions and prepares the following turn. The animation is
         paused after advancing.
-
-        Returns:
-            None
         """
 
         if self.animation_finished:
@@ -260,9 +236,6 @@ class DroneManager:
 
         If the current turn is the first turn, the animation is restarted
         and paused.
-
-        Returns:
-            None
         """
 
         valid_turns = [int(turn) for turn in self.turns]
@@ -298,9 +271,6 @@ class DroneManager:
 
         Resets the current, starting and target positions of every drone,
         as well as their orientation.
-
-        Returns:
-            None
         """
 
         start_pos = self.node_coords["start"]
@@ -326,9 +296,6 @@ class DroneManager:
             position: Screen coordinates where the drone is drawn.
             angle: Rotation angle of the drone in radians.
             color: Color used to fill the drone.
-
-        Returns:
-            None
         """
 
         x, y = position
@@ -351,9 +318,6 @@ class DroneManager:
 
         Uses each drone's current position, orientation and assigned color
         to render it on the screen.
-
-        Returns:
-            None
         """
 
         for drone in self.drone_pos:
