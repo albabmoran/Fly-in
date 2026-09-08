@@ -51,17 +51,16 @@ The main objectives are:
 
 The project is divided into three main stages:
 
-```text
-Input Map
+<pre>Input Map
     │
     ▼
-Parsing & Validation
+<b>Parsing & Validation</b>
     │
     ▼
 Graph Construction
     │
     ▼
-Pathfinding & Simulation
+<b>Pathfinding & Simulation</b>
     │
     ▼
 Movement Results
@@ -71,8 +70,7 @@ Movement Results
     ├──────────────► data/turns.json
     │
     ▼
-Pygame Visualization
-```
+<b>Pygame Visualization</b></pre>
 
 ---
 
@@ -198,24 +196,6 @@ The value is determined by the smallest capacity found among:
 * The total number of drones.
 * Hub capacities (`max_drones`).
 * Connection capacities (`max_link_capacity`).
-
-Conceptually:
-
-```text
-Maximum Flow
-     │
-     ├── Number of drones
-     │
-     ├── Hub capacities
-     │
-     └── Connection capacities
-             │
-             ▼
-      Minimum capacity
-             │
-             ▼
-       Maximum Flow
-```
 
 This value is stored in `StateMachine.max_flow`.
 
@@ -569,7 +549,7 @@ The application will:
 | Command               | Description                               |
 | --------------------- | ----------------------------------------- |
 | `make install`        | Install project dependencies              |
-| `make run`            | Run the simulation                        |
+| `make run`            | Run the default simulation                |
 | `make run MAP=<path>` | Run a specific map                        |
 | `make debug`          | Run the project using the Python debugger |
 | `make clean`          | Remove generated files and caches         |
