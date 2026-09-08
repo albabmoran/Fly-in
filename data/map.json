@@ -1,283 +1,539 @@
 {
-    "nb_drones": 12,
+    "nb_drones": 15,
     "hub": {
         "start": {
             "coord": [
                 0,
-                -1
+                0
             ],
             "zone": "normal",
             "color": "green",
-            "max_drones": 12,
+            "max_drones": 15,
             "line": 4
         },
-        "gate1": {
+        "dist_gate1": {
             "coord": [
                 1,
-                0
-            ],
-            "zone": "normal",
-            "color": "orange",
-            "max_drones": 1,
-            "line": 5
-        },
-        "gate2": {
-            "coord": [
-                2,
-                0
-            ],
-            "zone": "normal",
-            "color": "orange",
-            "max_drones": 1,
-            "line": 6
-        },
-        "gate3": {
-            "coord": [
-                3,
-                0
+                -1
             ],
             "zone": "normal",
             "color": "orange",
             "max_drones": 1,
             "line": 7
         },
-        "waiting_area1": {
+        "dist_gate2": {
             "coord": [
                 1,
                 1
             ],
             "zone": "normal",
-            "color": "blue",
-            "max_drones": 4,
+            "color": "orange",
+            "max_drones": 1,
             "line": 8
         },
-        "waiting_area2": {
+        "dist_gate3": {
+            "coord": [
+                1,
+                0
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 1,
+            "line": 9
+        },
+        "maze_trap1": {
+            "coord": [
+                1,
+                2
+            ],
+            "zone": "normal",
+            "color": "red",
+            "max_drones": 1,
+            "line": 12
+        },
+        "maze_trap2": {
+            "coord": [
+                2,
+                2
+            ],
+            "zone": "normal",
+            "color": "red",
+            "max_drones": 3,
+            "line": 13
+        },
+        "maze_loop1": {
             "coord": [
                 2,
                 1
             ],
             "zone": "normal",
-            "color": "blue",
-            "max_drones": 4,
-            "line": 9
+            "color": "purple",
+            "max_drones": 3,
+            "line": 14
         },
-        "waiting_area3": {
+        "maze_loop2": {
             "coord": [
                 3,
                 1
             ],
             "zone": "normal",
-            "color": "blue",
-            "max_drones": 4,
-            "line": 10
+            "color": "purple",
+            "max_drones": 3,
+            "line": 15
         },
-        "restricted_tunnel1": {
+        "maze_loop3": {
             "coord": [
                 4,
-                0
+                1
             ],
-            "zone": "restricted",
-            "color": "red",
-            "max_drones": 2,
-            "line": 11
+            "zone": "normal",
+            "color": "purple",
+            "max_drones": 3,
+            "line": 16
         },
-        "restricted_tunnel2": {
-            "coord": [
-                5,
-                0
-            ],
-            "zone": "restricted",
-            "color": "red",
-            "max_drones": 2,
-            "line": 12
-        },
-        "restricted_tunnel3": {
-            "coord": [
-                6,
-                0
-            ],
-            "zone": "restricted",
-            "color": "red",
-            "max_drones": 2,
-            "line": 13
-        },
-        "priority_bypass1": {
+        "maze_loop4": {
             "coord": [
                 3,
                 2
             ],
-            "zone": "priority",
-            "color": "cyan",
+            "zone": "normal",
+            "color": "purple",
             "max_drones": 3,
-            "line": 14
+            "line": 17
         },
-        "priority_bypass2": {
+        "maze_correct": {
             "coord": [
-                4,
-                2
+                2,
+                0
             ],
-            "zone": "priority",
-            "color": "cyan",
+            "zone": "normal",
+            "color": "blue",
             "max_drones": 3,
-            "line": 15
+            "line": 18
         },
-        "convergence": {
+        "bottleneck1": {
             "coord": [
-                7,
+                3,
                 0
             ],
             "zone": "normal",
             "color": "yellow",
-            "max_drones": 6,
-            "line": 16
+            "max_drones": 2,
+            "line": 21
         },
-        "final_bottleneck": {
+        "bottleneck2": {
+            "coord": [
+                4,
+                0
+            ],
+            "zone": "normal",
+            "color": "yellow",
+            "max_drones": 1,
+            "line": 22
+        },
+        "overflow1": {
+            "coord": [
+                3,
+                -1
+            ],
+            "zone": "restricted",
+            "color": "orange",
+            "max_drones": 3,
+            "line": 23
+        },
+        "overflow2": {
+            "coord": [
+                4,
+                -1
+            ],
+            "zone": "restricted",
+            "color": "orange",
+            "max_drones": 3,
+            "line": 24
+        },
+        "priority_hub": {
+            "coord": [
+                5,
+                0
+            ],
+            "zone": "priority",
+            "color": "cyan",
+            "max_drones": 4,
+            "line": 27
+        },
+        "priority_trap1": {
+            "coord": [
+                5,
+                1
+            ],
+            "zone": "priority",
+            "color": "cyan",
+            "max_drones": 1,
+            "line": 28
+        },
+        "priority_trap2": {
+            "coord": [
+                6,
+                1
+            ],
+            "zone": "priority",
+            "color": "cyan",
+            "max_drones": 1,
+            "line": 29
+        },
+        "priority_dead_end": {
+            "coord": [
+                6,
+                2
+            ],
+            "zone": "normal",
+            "color": "red",
+            "max_drones": 1,
+            "line": 30
+        },
+        "priority_correct": {
+            "coord": [
+                6,
+                0
+            ],
+            "zone": "priority",
+            "color": "cyan",
+            "max_drones": 3,
+            "line": 31
+        },
+        "conv_restricted1": {
+            "coord": [
+                7,
+                0
+            ],
+            "zone": "restricted",
+            "color": "brown",
+            "max_drones": 2,
+            "line": 34
+        },
+        "conv_restricted2": {
             "coord": [
                 8,
                 0
             ],
-            "zone": "normal",
-            "color": "orange",
-            "max_drones": 3,
-            "line": 17
+            "zone": "restricted",
+            "color": "brown",
+            "max_drones": 2,
+            "line": 35
         },
-        "end": {
+        "conv_normal1": {
+            "coord": [
+                7,
+                -1
+            ],
+            "zone": "normal",
+            "color": "blue",
+            "max_drones": 3,
+            "line": 36
+        },
+        "conv_normal2": {
+            "coord": [
+                8,
+                -1
+            ],
+            "zone": "normal",
+            "color": "blue",
+            "max_drones": 3,
+            "line": 37
+        },
+        "conv_priority1": {
+            "coord": [
+                7,
+                1
+            ],
+            "zone": "priority",
+            "color": "lime",
+            "max_drones": 2,
+            "line": 38
+        },
+        "conv_priority2": {
+            "coord": [
+                8,
+                1
+            ],
+            "zone": "priority",
+            "color": "lime",
+            "max_drones": 2,
+            "line": 39
+        },
+        "final_merge": {
             "coord": [
                 9,
                 0
             ],
             "zone": "normal",
-            "color": "green",
-            "max_drones": 12,
-            "line": 18
+            "color": "magenta",
+            "max_drones": 8,
+            "line": 42
+        },
+        "final_gate1": {
+            "coord": [
+                10,
+                0
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 3,
+            "line": 43
+        },
+        "final_gate2": {
+            "coord": [
+                11,
+                0
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 2,
+            "line": 44
+        },
+        "final_gate3": {
+            "coord": [
+                12,
+                0
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 1,
+            "line": 45
+        },
+        "end": {
+            "coord": [
+                13,
+                0
+            ],
+            "zone": "normal",
+            "color": "gold",
+            "max_drones": 15,
+            "line": 47
         }
     },
     "connection": {
         "1": {
             "zone_a": "start",
-            "zone_b": "gate1",
+            "zone_b": "dist_gate1",
             "max_link_capacity": 1,
-            "line": 21
+            "line": 50
         },
         "2": {
             "zone_a": "start",
-            "zone_b": "gate2",
-            "max_link_capacity": 1,
-            "line": 22
+            "zone_b": "dist_gate2",
+            "max_link_capacity": 2,
+            "line": 51
         },
         "3": {
             "zone_a": "start",
-            "zone_b": "gate3",
+            "zone_b": "dist_gate3",
             "max_link_capacity": 1,
-            "line": 23
+            "line": 52
         },
         "4": {
-            "zone_a": "gate1",
-            "zone_b": "gate2",
+            "zone_a": "dist_gate1",
+            "zone_b": "maze_correct",
             "max_link_capacity": 1,
-            "line": 24
+            "line": 55
         },
         "5": {
-            "zone_a": "gate2",
-            "zone_b": "gate3",
-            "max_link_capacity": 1,
-            "line": 25
+            "zone_a": "dist_gate2",
+            "zone_b": "maze_trap1",
+            "max_link_capacity": 2,
+            "line": 56
         },
         "6": {
-            "zone_a": "gate1",
-            "zone_b": "waiting_area1",
+            "zone_a": "dist_gate3",
+            "zone_b": "maze_loop1",
             "max_link_capacity": 1,
-            "line": 28
+            "line": 57
         },
         "7": {
-            "zone_a": "gate2",
-            "zone_b": "waiting_area2",
-            "max_link_capacity": 1,
-            "line": 29
+            "zone_a": "maze_trap1",
+            "zone_b": "maze_trap2",
+            "max_link_capacity": 2,
+            "line": 58
         },
         "8": {
-            "zone_a": "gate3",
-            "zone_b": "waiting_area3",
+            "zone_a": "maze_loop1",
+            "zone_b": "maze_loop2",
             "max_link_capacity": 1,
-            "line": 30
+            "line": 59
         },
         "9": {
-            "zone_a": "waiting_area1",
-            "zone_b": "waiting_area2",
+            "zone_a": "maze_loop2",
+            "zone_b": "maze_loop3",
             "max_link_capacity": 1,
-            "line": 31
+            "line": 60
         },
         "10": {
-            "zone_a": "waiting_area2",
-            "zone_b": "waiting_area3",
+            "zone_a": "maze_loop3",
+            "zone_b": "maze_loop4",
             "max_link_capacity": 1,
-            "line": 32
+            "line": 61
         },
         "11": {
-            "zone_a": "gate3",
-            "zone_b": "restricted_tunnel1",
+            "zone_a": "maze_loop4",
+            "zone_b": "maze_loop1",
             "max_link_capacity": 1,
-            "line": 35
+            "line": 62
         },
         "12": {
-            "zone_a": "restricted_tunnel1",
-            "zone_b": "restricted_tunnel2",
+            "zone_a": "maze_loop2",
+            "zone_b": "maze_correct",
             "max_link_capacity": 1,
-            "line": 36
+            "line": 63
         },
         "13": {
-            "zone_a": "restricted_tunnel2",
-            "zone_b": "restricted_tunnel3",
-            "max_link_capacity": 1,
-            "line": 37
+            "zone_a": "maze_correct",
+            "zone_b": "bottleneck1",
+            "max_link_capacity": 2,
+            "line": 66
         },
         "14": {
-            "zone_a": "restricted_tunnel3",
-            "zone_b": "convergence",
+            "zone_a": "bottleneck1",
+            "zone_b": "bottleneck2",
             "max_link_capacity": 1,
-            "line": 38
+            "line": 67
         },
         "15": {
-            "zone_a": "waiting_area1",
-            "zone_b": "priority_bypass1",
+            "zone_a": "bottleneck1",
+            "zone_b": "overflow1",
             "max_link_capacity": 1,
-            "line": 41
+            "line": 68
         },
         "16": {
-            "zone_a": "waiting_area2",
-            "zone_b": "priority_bypass2",
-            "max_link_capacity": 1,
-            "line": 42
+            "zone_a": "overflow1",
+            "zone_b": "overflow2",
+            "max_link_capacity": 2,
+            "line": 69
         },
         "17": {
-            "zone_a": "priority_bypass1",
-            "zone_b": "priority_bypass2",
+            "zone_a": "overflow2",
+            "zone_b": "bottleneck2",
             "max_link_capacity": 1,
-            "line": 43
+            "line": 70
         },
         "18": {
-            "zone_a": "priority_bypass2",
-            "zone_b": "convergence",
-            "max_link_capacity": 2,
-            "line": 44
+            "zone_a": "bottleneck2",
+            "zone_b": "priority_hub",
+            "max_link_capacity": 1,
+            "line": 73
         },
         "19": {
-            "zone_a": "convergence",
-            "zone_b": "final_bottleneck",
-            "max_link_capacity": 3,
-            "line": 47
+            "zone_a": "priority_hub",
+            "zone_b": "priority_trap1",
+            "max_link_capacity": 1,
+            "line": 74
         },
         "20": {
-            "zone_a": "final_bottleneck",
-            "zone_b": "end",
+            "zone_a": "priority_hub",
+            "zone_b": "priority_correct",
             "max_link_capacity": 1,
-            "line": 48
+            "line": 75
         },
         "21": {
-            "zone_a": "waiting_area3",
-            "zone_b": "convergence",
+            "zone_a": "priority_trap1",
+            "zone_b": "priority_trap2",
             "max_link_capacity": 1,
-            "line": 51
+            "line": 76
+        },
+        "22": {
+            "zone_a": "priority_trap2",
+            "zone_b": "priority_dead_end",
+            "max_link_capacity": 1,
+            "line": 77
+        },
+        "23": {
+            "zone_a": "priority_correct",
+            "zone_b": "conv_restricted1",
+            "max_link_capacity": 1,
+            "line": 78
+        },
+        "24": {
+            "zone_a": "priority_correct",
+            "zone_b": "conv_normal1",
+            "max_link_capacity": 1,
+            "line": 79
+        },
+        "25": {
+            "zone_a": "priority_correct",
+            "zone_b": "conv_priority1",
+            "max_link_capacity": 1,
+            "line": 80
+        },
+        "26": {
+            "zone_a": "conv_restricted1",
+            "zone_b": "conv_restricted2",
+            "max_link_capacity": 1,
+            "line": 83
+        },
+        "27": {
+            "zone_a": "conv_normal1",
+            "zone_b": "conv_normal2",
+            "max_link_capacity": 1,
+            "line": 84
+        },
+        "28": {
+            "zone_a": "conv_priority1",
+            "zone_b": "conv_priority2",
+            "max_link_capacity": 2,
+            "line": 85
+        },
+        "29": {
+            "zone_a": "conv_restricted2",
+            "zone_b": "final_merge",
+            "max_link_capacity": 1,
+            "line": 86
+        },
+        "30": {
+            "zone_a": "conv_normal2",
+            "zone_b": "final_merge",
+            "max_link_capacity": 1,
+            "line": 87
+        },
+        "31": {
+            "zone_a": "conv_priority2",
+            "zone_b": "final_merge",
+            "max_link_capacity": 2,
+            "line": 88
+        },
+        "32": {
+            "zone_a": "final_merge",
+            "zone_b": "final_gate1",
+            "max_link_capacity": 3,
+            "line": 91
+        },
+        "33": {
+            "zone_a": "final_gate1",
+            "zone_b": "final_gate2",
+            "max_link_capacity": 2,
+            "line": 92
+        },
+        "34": {
+            "zone_a": "final_gate2",
+            "zone_b": "final_gate3",
+            "max_link_capacity": 2,
+            "line": 93
+        },
+        "35": {
+            "zone_a": "final_gate3",
+            "zone_b": "end",
+            "max_link_capacity": 2,
+            "line": 94
+        },
+        "36": {
+            "zone_a": "overflow2",
+            "zone_b": "conv_normal1",
+            "max_link_capacity": 1,
+            "line": 97
+        },
+        "37": {
+            "zone_a": "priority_hub",
+            "zone_b": "conv_priority1",
+            "max_link_capacity": 1,
+            "line": 98
         }
     }
 }

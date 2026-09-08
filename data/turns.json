@@ -2,271 +2,833 @@
     "1": {
         "1": {
             "movement": 2,
-            "hub": "gate3"
+            "hub": "dist_gate1"
         }
     },
     "2": {
         "1": {
             "movement": 2,
-            "hub": "waiting_area3"
+            "hub": "maze_correct"
         },
         "2": {
             "movement": 2,
-            "hub": "gate3"
+            "hub": "dist_gate1"
         }
     },
     "3": {
         "1": {
             "movement": 2,
-            "hub": "convergence"
+            "hub": "bottleneck1"
         },
         "2": {
             "movement": 2,
-            "hub": "waiting_area3"
+            "hub": "maze_correct"
         },
         "3": {
             "movement": 2,
-            "hub": "gate3"
+            "hub": "dist_gate1"
         }
     },
     "4": {
         "1": {
             "movement": 2,
-            "hub": "final_bottleneck"
+            "hub": "bottleneck2"
         },
         "2": {
             "movement": 2,
-            "hub": "convergence"
+            "hub": "bottleneck1"
         },
         "3": {
             "movement": 2,
-            "hub": "waiting_area3"
+            "hub": "maze_correct"
         },
         "4": {
             "movement": 2,
-            "hub": "gate3"
+            "hub": "dist_gate1"
         }
     },
     "5": {
+        "1": {
+            "movement": 1,
+            "hub": "bottleneck2-overflow2"
+        },
+        "2": {
+            "movement": 2,
+            "hub": "bottleneck2"
+        },
+        "3": {
+            "movement": 2,
+            "hub": "bottleneck1"
+        },
+        "4": {
+            "movement": 2,
+            "hub": "maze_correct"
+        },
+        "5": {
+            "movement": 2,
+            "hub": "dist_gate1"
+        }
+    },
+    "6": {
+        "1": {
+            "movement": 2,
+            "hub": "overflow2"
+        },
+        "2": {
+            "movement": 2,
+            "hub": "priority_hub"
+        },
+        "3": {
+            "movement": 2,
+            "hub": "bottleneck2"
+        },
+        "4": {
+            "movement": 2,
+            "hub": "bottleneck1"
+        },
+        "5": {
+            "movement": 2,
+            "hub": "maze_correct"
+        },
+        "6": {
+            "movement": 2,
+            "hub": "dist_gate1"
+        }
+    },
+    "7": {
+        "1": {
+            "movement": 2,
+            "hub": "conv_normal1"
+        },
+        "2": {
+            "movement": 2,
+            "hub": "conv_priority1"
+        },
+        "3": {
+            "movement": 1,
+            "hub": "bottleneck2-overflow2"
+        },
+        "4": {
+            "movement": 2,
+            "hub": "bottleneck2"
+        },
+        "5": {
+            "movement": 2,
+            "hub": "bottleneck1"
+        },
+        "6": {
+            "movement": 2,
+            "hub": "maze_correct"
+        },
+        "7": {
+            "movement": 2,
+            "hub": "dist_gate1"
+        }
+    },
+    "8": {
+        "1": {
+            "movement": 2,
+            "hub": "conv_normal2"
+        },
+        "2": {
+            "movement": 2,
+            "hub": "conv_priority2"
+        },
+        "3": {
+            "movement": 2,
+            "hub": "overflow2"
+        },
+        "4": {
+            "movement": 2,
+            "hub": "priority_hub"
+        },
+        "5": {
+            "movement": 2,
+            "hub": "bottleneck2"
+        },
+        "6": {
+            "movement": 2,
+            "hub": "bottleneck1"
+        },
+        "7": {
+            "movement": 2,
+            "hub": "maze_correct"
+        },
+        "8": {
+            "movement": 2,
+            "hub": "dist_gate1"
+        }
+    },
+    "9": {
+        "1": {
+            "movement": 2,
+            "hub": "final_merge"
+        },
+        "2": {
+            "movement": 2,
+            "hub": "final_merge"
+        },
+        "3": {
+            "movement": 2,
+            "hub": "conv_normal1"
+        },
+        "4": {
+            "movement": 2,
+            "hub": "conv_priority1"
+        },
+        "5": {
+            "movement": 1,
+            "hub": "bottleneck2-overflow2"
+        },
+        "6": {
+            "movement": 2,
+            "hub": "bottleneck2"
+        },
+        "7": {
+            "movement": 2,
+            "hub": "bottleneck1"
+        },
+        "8": {
+            "movement": 2,
+            "hub": "maze_correct"
+        },
+        "9": {
+            "movement": 2,
+            "hub": "dist_gate1"
+        }
+    },
+    "10": {
+        "1": {
+            "movement": 2,
+            "hub": "final_gate1"
+        },
+        "2": {
+            "movement": 0,
+            "hub": "final_merge"
+        },
+        "3": {
+            "movement": 2,
+            "hub": "conv_normal2"
+        },
+        "4": {
+            "movement": 2,
+            "hub": "conv_priority2"
+        },
+        "5": {
+            "movement": 2,
+            "hub": "overflow2"
+        },
+        "6": {
+            "movement": 2,
+            "hub": "priority_hub"
+        },
+        "7": {
+            "movement": 2,
+            "hub": "bottleneck2"
+        },
+        "8": {
+            "movement": 2,
+            "hub": "bottleneck1"
+        },
+        "9": {
+            "movement": 2,
+            "hub": "maze_correct"
+        },
+        "10": {
+            "movement": 2,
+            "hub": "dist_gate1"
+        }
+    },
+    "11": {
+        "1": {
+            "movement": 2,
+            "hub": "final_gate2"
+        },
+        "2": {
+            "movement": 2,
+            "hub": "final_gate1"
+        },
+        "3": {
+            "movement": 2,
+            "hub": "final_merge"
+        },
+        "4": {
+            "movement": 2,
+            "hub": "final_merge"
+        },
+        "5": {
+            "movement": 2,
+            "hub": "conv_normal1"
+        },
+        "6": {
+            "movement": 2,
+            "hub": "conv_priority1"
+        },
+        "7": {
+            "movement": 1,
+            "hub": "bottleneck2-overflow2"
+        },
+        "8": {
+            "movement": 2,
+            "hub": "bottleneck2"
+        },
+        "9": {
+            "movement": 2,
+            "hub": "bottleneck1"
+        },
+        "10": {
+            "movement": 2,
+            "hub": "maze_correct"
+        },
+        "11": {
+            "movement": 2,
+            "hub": "dist_gate1"
+        }
+    },
+    "12": {
+        "1": {
+            "movement": 2,
+            "hub": "final_gate3"
+        },
+        "2": {
+            "movement": 2,
+            "hub": "final_gate2"
+        },
+        "3": {
+            "movement": 2,
+            "hub": "final_gate1"
+        },
+        "4": {
+            "movement": 0,
+            "hub": "final_merge"
+        },
+        "5": {
+            "movement": 2,
+            "hub": "conv_normal2"
+        },
+        "6": {
+            "movement": 2,
+            "hub": "conv_priority2"
+        },
+        "7": {
+            "movement": 2,
+            "hub": "overflow2"
+        },
+        "8": {
+            "movement": 2,
+            "hub": "priority_hub"
+        },
+        "9": {
+            "movement": 2,
+            "hub": "bottleneck2"
+        },
+        "10": {
+            "movement": 2,
+            "hub": "bottleneck1"
+        },
+        "11": {
+            "movement": 2,
+            "hub": "maze_correct"
+        },
+        "12": {
+            "movement": 2,
+            "hub": "dist_gate1"
+        }
+    },
+    "13": {
         "1": {
             "movement": 2,
             "hub": "end"
         },
         "2": {
             "movement": 2,
-            "hub": "final_bottleneck"
+            "hub": "final_gate3"
         },
         "3": {
             "movement": 2,
-            "hub": "convergence"
+            "hub": "final_gate2"
         },
         "4": {
             "movement": 2,
-            "hub": "waiting_area3"
+            "hub": "final_gate1"
         },
         "5": {
             "movement": 2,
-            "hub": "gate3"
+            "hub": "final_merge"
+        },
+        "6": {
+            "movement": 2,
+            "hub": "final_merge"
+        },
+        "7": {
+            "movement": 2,
+            "hub": "conv_normal1"
+        },
+        "8": {
+            "movement": 2,
+            "hub": "conv_priority1"
+        },
+        "9": {
+            "movement": 1,
+            "hub": "bottleneck2-overflow2"
+        },
+        "10": {
+            "movement": 2,
+            "hub": "bottleneck2"
+        },
+        "11": {
+            "movement": 2,
+            "hub": "bottleneck1"
+        },
+        "12": {
+            "movement": 2,
+            "hub": "maze_correct"
+        },
+        "13": {
+            "movement": 2,
+            "hub": "dist_gate1"
         }
     },
-    "6": {
+    "14": {
         "2": {
             "movement": 2,
             "hub": "end"
         },
         "3": {
             "movement": 2,
-            "hub": "final_bottleneck"
+            "hub": "final_gate3"
         },
         "4": {
             "movement": 2,
-            "hub": "convergence"
+            "hub": "final_gate2"
         },
         "5": {
             "movement": 2,
-            "hub": "waiting_area3"
+            "hub": "final_gate1"
         },
         "6": {
+            "movement": 0,
+            "hub": "final_merge"
+        },
+        "7": {
             "movement": 2,
-            "hub": "gate3"
+            "hub": "conv_normal2"
+        },
+        "8": {
+            "movement": 2,
+            "hub": "conv_priority2"
+        },
+        "9": {
+            "movement": 2,
+            "hub": "overflow2"
+        },
+        "10": {
+            "movement": 2,
+            "hub": "priority_hub"
+        },
+        "11": {
+            "movement": 2,
+            "hub": "bottleneck2"
+        },
+        "12": {
+            "movement": 2,
+            "hub": "bottleneck1"
+        },
+        "13": {
+            "movement": 2,
+            "hub": "maze_correct"
+        },
+        "14": {
+            "movement": 2,
+            "hub": "dist_gate1"
         }
     },
-    "7": {
+    "15": {
         "3": {
             "movement": 2,
             "hub": "end"
         },
         "4": {
             "movement": 2,
-            "hub": "final_bottleneck"
+            "hub": "final_gate3"
         },
         "5": {
             "movement": 2,
-            "hub": "convergence"
+            "hub": "final_gate2"
         },
         "6": {
             "movement": 2,
-            "hub": "waiting_area3"
+            "hub": "final_gate1"
         },
         "7": {
             "movement": 2,
-            "hub": "gate3"
+            "hub": "final_merge"
+        },
+        "8": {
+            "movement": 2,
+            "hub": "final_merge"
+        },
+        "9": {
+            "movement": 2,
+            "hub": "conv_normal1"
+        },
+        "10": {
+            "movement": 2,
+            "hub": "conv_priority1"
+        },
+        "11": {
+            "movement": 1,
+            "hub": "bottleneck2-overflow2"
+        },
+        "12": {
+            "movement": 2,
+            "hub": "bottleneck2"
+        },
+        "13": {
+            "movement": 2,
+            "hub": "bottleneck1"
+        },
+        "14": {
+            "movement": 2,
+            "hub": "maze_correct"
+        },
+        "15": {
+            "movement": 2,
+            "hub": "dist_gate1"
         }
     },
-    "8": {
+    "16": {
         "4": {
             "movement": 2,
             "hub": "end"
         },
         "5": {
             "movement": 2,
-            "hub": "final_bottleneck"
+            "hub": "final_gate3"
         },
         "6": {
             "movement": 2,
-            "hub": "convergence"
+            "hub": "final_gate2"
         },
         "7": {
             "movement": 2,
-            "hub": "waiting_area3"
+            "hub": "final_gate1"
         },
         "8": {
+            "movement": 0,
+            "hub": "final_merge"
+        },
+        "9": {
             "movement": 2,
-            "hub": "gate3"
+            "hub": "conv_normal2"
+        },
+        "10": {
+            "movement": 2,
+            "hub": "conv_priority2"
+        },
+        "11": {
+            "movement": 2,
+            "hub": "overflow2"
+        },
+        "12": {
+            "movement": 2,
+            "hub": "priority_hub"
+        },
+        "13": {
+            "movement": 2,
+            "hub": "bottleneck2"
+        },
+        "14": {
+            "movement": 2,
+            "hub": "bottleneck1"
+        },
+        "15": {
+            "movement": 2,
+            "hub": "maze_correct"
         }
     },
-    "9": {
+    "17": {
         "5": {
             "movement": 2,
             "hub": "end"
         },
         "6": {
             "movement": 2,
-            "hub": "final_bottleneck"
+            "hub": "final_gate3"
         },
         "7": {
             "movement": 2,
-            "hub": "convergence"
+            "hub": "final_gate2"
         },
         "8": {
             "movement": 2,
-            "hub": "waiting_area3"
+            "hub": "final_gate1"
         },
         "9": {
             "movement": 2,
-            "hub": "gate3"
+            "hub": "final_merge"
+        },
+        "10": {
+            "movement": 2,
+            "hub": "final_merge"
+        },
+        "11": {
+            "movement": 2,
+            "hub": "conv_normal1"
+        },
+        "12": {
+            "movement": 2,
+            "hub": "conv_priority1"
+        },
+        "13": {
+            "movement": 1,
+            "hub": "bottleneck2-overflow2"
+        },
+        "14": {
+            "movement": 2,
+            "hub": "bottleneck2"
+        },
+        "15": {
+            "movement": 2,
+            "hub": "bottleneck1"
         }
     },
-    "10": {
+    "18": {
         "6": {
             "movement": 2,
             "hub": "end"
         },
         "7": {
             "movement": 2,
-            "hub": "final_bottleneck"
+            "hub": "final_gate3"
         },
         "8": {
             "movement": 2,
-            "hub": "convergence"
+            "hub": "final_gate2"
         },
         "9": {
             "movement": 2,
-            "hub": "waiting_area3"
+            "hub": "final_gate1"
         },
         "10": {
+            "movement": 0,
+            "hub": "final_merge"
+        },
+        "11": {
             "movement": 2,
-            "hub": "gate3"
+            "hub": "conv_normal2"
+        },
+        "12": {
+            "movement": 2,
+            "hub": "conv_priority2"
+        },
+        "13": {
+            "movement": 2,
+            "hub": "overflow2"
+        },
+        "14": {
+            "movement": 2,
+            "hub": "priority_hub"
+        },
+        "15": {
+            "movement": 2,
+            "hub": "bottleneck2"
         }
     },
-    "11": {
+    "19": {
         "7": {
             "movement": 2,
             "hub": "end"
         },
         "8": {
             "movement": 2,
-            "hub": "final_bottleneck"
+            "hub": "final_gate3"
         },
         "9": {
             "movement": 2,
-            "hub": "convergence"
+            "hub": "final_gate2"
         },
         "10": {
             "movement": 2,
-            "hub": "waiting_area3"
+            "hub": "final_gate1"
         },
         "11": {
             "movement": 2,
-            "hub": "gate3"
+            "hub": "final_merge"
+        },
+        "12": {
+            "movement": 2,
+            "hub": "final_merge"
+        },
+        "13": {
+            "movement": 2,
+            "hub": "conv_normal1"
+        },
+        "14": {
+            "movement": 2,
+            "hub": "conv_priority1"
+        },
+        "15": {
+            "movement": 1,
+            "hub": "bottleneck2-overflow2"
         }
     },
-    "12": {
+    "20": {
         "8": {
             "movement": 2,
             "hub": "end"
         },
         "9": {
             "movement": 2,
-            "hub": "final_bottleneck"
+            "hub": "final_gate3"
         },
         "10": {
             "movement": 2,
-            "hub": "convergence"
+            "hub": "final_gate2"
         },
         "11": {
             "movement": 2,
-            "hub": "waiting_area3"
+            "hub": "final_gate1"
         },
         "12": {
+            "movement": 0,
+            "hub": "final_merge"
+        },
+        "13": {
             "movement": 2,
-            "hub": "gate3"
+            "hub": "conv_normal2"
+        },
+        "14": {
+            "movement": 2,
+            "hub": "conv_priority2"
+        },
+        "15": {
+            "movement": 2,
+            "hub": "overflow2"
         }
     },
-    "13": {
+    "21": {
         "9": {
             "movement": 2,
             "hub": "end"
         },
         "10": {
             "movement": 2,
-            "hub": "final_bottleneck"
+            "hub": "final_gate3"
         },
         "11": {
             "movement": 2,
-            "hub": "convergence"
+            "hub": "final_gate2"
         },
         "12": {
             "movement": 2,
-            "hub": "waiting_area3"
+            "hub": "final_gate1"
+        },
+        "13": {
+            "movement": 2,
+            "hub": "final_merge"
+        },
+        "14": {
+            "movement": 2,
+            "hub": "final_merge"
+        },
+        "15": {
+            "movement": 2,
+            "hub": "conv_normal1"
         }
     },
-    "14": {
+    "22": {
         "10": {
             "movement": 2,
             "hub": "end"
         },
         "11": {
             "movement": 2,
-            "hub": "final_bottleneck"
+            "hub": "final_gate3"
         },
         "12": {
             "movement": 2,
-            "hub": "convergence"
+            "hub": "final_gate2"
+        },
+        "13": {
+            "movement": 2,
+            "hub": "final_gate1"
+        },
+        "14": {
+            "movement": 0,
+            "hub": "final_merge"
+        },
+        "15": {
+            "movement": 2,
+            "hub": "conv_normal2"
         }
     },
-    "15": {
+    "23": {
         "11": {
             "movement": 2,
             "hub": "end"
         },
         "12": {
             "movement": 2,
-            "hub": "final_bottleneck"
+            "hub": "final_gate3"
+        },
+        "13": {
+            "movement": 2,
+            "hub": "final_gate2"
+        },
+        "14": {
+            "movement": 2,
+            "hub": "final_gate1"
+        },
+        "15": {
+            "movement": 2,
+            "hub": "final_merge"
         }
     },
-    "16": {
+    "24": {
         "12": {
+            "movement": 2,
+            "hub": "end"
+        },
+        "13": {
+            "movement": 2,
+            "hub": "final_gate3"
+        },
+        "14": {
+            "movement": 2,
+            "hub": "final_gate2"
+        },
+        "15": {
+            "movement": 2,
+            "hub": "final_gate1"
+        }
+    },
+    "25": {
+        "13": {
+            "movement": 2,
+            "hub": "end"
+        },
+        "14": {
+            "movement": 2,
+            "hub": "final_gate3"
+        },
+        "15": {
+            "movement": 2,
+            "hub": "final_gate2"
+        }
+    },
+    "26": {
+        "14": {
+            "movement": 2,
+            "hub": "end"
+        },
+        "15": {
+            "movement": 2,
+            "hub": "final_gate3"
+        }
+    },
+    "27": {
+        "15": {
             "movement": 2,
             "hub": "end"
         }
