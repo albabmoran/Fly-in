@@ -1,138 +1,74 @@
 {
     "start": [
-        "dist_gate1",
-        "dist_gate2",
-        "dist_gate3"
+        "gate1",
+        "gate2",
+        "gate3"
     ],
-    "dist_gate1": [
+    "gate1": [
         "start",
-        "maze_correct"
+        "gate2",
+        "waiting_area1"
     ],
-    "dist_gate2": [
+    "gate2": [
         "start",
-        "maze_trap1"
+        "gate1",
+        "gate3",
+        "waiting_area2"
     ],
-    "dist_gate3": [
+    "gate3": [
         "start",
-        "maze_loop1"
+        "gate2",
+        "waiting_area3",
+        "restricted_tunnel1"
     ],
-    "maze_correct": [
-        "dist_gate1",
-        "maze_loop2",
-        "bottleneck1"
+    "waiting_area1": [
+        "gate1",
+        "waiting_area2",
+        "priority_bypass1"
     ],
-    "maze_trap1": [
-        "dist_gate2",
-        "maze_trap2"
+    "waiting_area2": [
+        "gate2",
+        "waiting_area1",
+        "waiting_area3",
+        "priority_bypass2"
     ],
-    "maze_loop1": [
-        "dist_gate3",
-        "maze_loop2",
-        "maze_loop4"
+    "waiting_area3": [
+        "gate3",
+        "waiting_area2",
+        "convergence"
     ],
-    "maze_trap2": [
-        "maze_trap1"
+    "restricted_tunnel1": [
+        "gate3",
+        "restricted_tunnel2"
     ],
-    "maze_loop2": [
-        "maze_loop1",
-        "maze_loop3",
-        "maze_correct"
+    "restricted_tunnel2": [
+        "restricted_tunnel1",
+        "restricted_tunnel3"
     ],
-    "maze_loop3": [
-        "maze_loop2",
-        "maze_loop4"
+    "restricted_tunnel3": [
+        "restricted_tunnel2",
+        "convergence"
     ],
-    "maze_loop4": [
-        "maze_loop3",
-        "maze_loop1"
+    "convergence": [
+        "restricted_tunnel3",
+        "priority_bypass2",
+        "final_bottleneck",
+        "waiting_area3"
     ],
-    "bottleneck1": [
-        "maze_correct",
-        "bottleneck2",
-        "overflow1"
+    "priority_bypass1": [
+        "waiting_area1",
+        "priority_bypass2"
     ],
-    "bottleneck2": [
-        "bottleneck1",
-        "overflow2",
-        "priority_hub"
+    "priority_bypass2": [
+        "waiting_area2",
+        "priority_bypass1",
+        "convergence"
     ],
-    "overflow1": [
-        "bottleneck1",
-        "overflow2"
-    ],
-    "overflow2": [
-        "overflow1",
-        "bottleneck2",
-        "conv_normal1"
-    ],
-    "priority_hub": [
-        "bottleneck2",
-        "priority_trap1",
-        "priority_correct",
-        "conv_priority1"
-    ],
-    "priority_trap1": [
-        "priority_hub",
-        "priority_trap2"
-    ],
-    "priority_correct": [
-        "priority_hub",
-        "conv_restricted1",
-        "conv_normal1",
-        "conv_priority1"
-    ],
-    "priority_trap2": [
-        "priority_trap1",
-        "priority_dead_end"
-    ],
-    "priority_dead_end": [
-        "priority_trap2"
-    ],
-    "conv_restricted1": [
-        "priority_correct",
-        "conv_restricted2"
-    ],
-    "conv_normal1": [
-        "priority_correct",
-        "conv_normal2",
-        "overflow2"
-    ],
-    "conv_priority1": [
-        "priority_correct",
-        "conv_priority2",
-        "priority_hub"
-    ],
-    "conv_restricted2": [
-        "conv_restricted1",
-        "final_merge"
-    ],
-    "conv_normal2": [
-        "conv_normal1",
-        "final_merge"
-    ],
-    "conv_priority2": [
-        "conv_priority1",
-        "final_merge"
-    ],
-    "final_merge": [
-        "conv_restricted2",
-        "conv_normal2",
-        "conv_priority2",
-        "final_gate1"
-    ],
-    "final_gate1": [
-        "final_merge",
-        "final_gate2"
-    ],
-    "final_gate2": [
-        "final_gate1",
-        "final_gate3"
-    ],
-    "final_gate3": [
-        "final_gate2",
+    "final_bottleneck": [
+        "convergence",
         "end"
     ],
     "end": [
-        "final_gate3"
+        "final_bottleneck"
     ]
 }

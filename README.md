@@ -2,6 +2,10 @@
 
 # Fly-In
 
+<center>
+  <img src="fly-in.gif" alt="Demostración del proyecto" width="600">
+</center>
+
 ## Table of Contents
 
 1. [Description](#description)

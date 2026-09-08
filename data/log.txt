@@ -1,27 +1,16 @@
-D1-dist_gate1
-D1-maze_correct D2-dist_gate1
-D1-bottleneck1 D2-maze_correct D3-dist_gate1
-D1-bottleneck2 D2-bottleneck1 D3-maze_correct D4-dist_gate1
-D1-bottleneck2-overflow2 D2-bottleneck2 D3-bottleneck1 D4-maze_correct D5-dist_gate1
-D1-overflow2 D2-priority_hub D3-bottleneck2 D4-bottleneck1 D5-maze_correct D6-dist_gate1
-D1-conv_normal1 D2-conv_priority1 D3-bottleneck2-overflow2 D4-bottleneck2 D5-bottleneck1 D6-maze_correct D7-dist_gate1
-D1-conv_normal2 D2-conv_priority2 D3-overflow2 D4-priority_hub D5-bottleneck2 D6-bottleneck1 D7-maze_correct D8-dist_gate1
-D1-final_merge D2-final_merge D3-conv_normal1 D4-conv_priority1 D5-bottleneck2-overflow2 D6-bottleneck2 D7-bottleneck1 D8-maze_correct D9-dist_gate1
-D1-final_gate1 D2-final_merge D3-conv_normal2 D4-conv_priority2 D5-overflow2 D6-priority_hub D7-bottleneck2 D8-bottleneck1 D9-maze_correct D10-dist_gate1
-D1-final_gate2 D2-final_gate1 D3-final_merge D4-final_merge D5-conv_normal1 D6-conv_priority1 D7-bottleneck2-overflow2 D8-bottleneck2 D9-bottleneck1 D10-maze_correct D11-dist_gate1
-D1-final_gate3 D2-final_gate2 D3-final_gate1 D4-final_merge D5-conv_normal2 D6-conv_priority2 D7-overflow2 D8-priority_hub D9-bottleneck2 D10-bottleneck1 D11-maze_correct D12-dist_gate1
-D1-end D2-final_gate3 D3-final_gate2 D4-final_gate1 D5-final_merge D6-final_merge D7-conv_normal1 D8-conv_priority1 D9-bottleneck2-overflow2 D10-bottleneck2 D11-bottleneck1 D12-maze_correct D13-dist_gate1
-D2-end D3-final_gate3 D4-final_gate2 D5-final_gate1 D6-final_merge D7-conv_normal2 D8-conv_priority2 D9-overflow2 D10-priority_hub D11-bottleneck2 D12-bottleneck1 D13-maze_correct D14-dist_gate1
-D3-end D4-final_gate3 D5-final_gate2 D6-final_gate1 D7-final_merge D8-final_merge D9-conv_normal1 D10-conv_priority1 D11-bottleneck2-overflow2 D12-bottleneck2 D13-bottleneck1 D14-maze_correct D15-dist_gate1
-D4-end D5-final_gate3 D6-final_gate2 D7-final_gate1 D8-final_merge D9-conv_normal2 D10-conv_priority2 D11-overflow2 D12-priority_hub D13-bottleneck2 D14-bottleneck1 D15-maze_correct
-D5-end D6-final_gate3 D7-final_gate2 D8-final_gate1 D9-final_merge D10-final_merge D11-conv_normal1 D12-conv_priority1 D13-bottleneck2-overflow2 D14-bottleneck2 D15-bottleneck1
-D6-end D7-final_gate3 D8-final_gate2 D9-final_gate1 D10-final_merge D11-conv_normal2 D12-conv_priority2 D13-overflow2 D14-priority_hub D15-bottleneck2
-D7-end D8-final_gate3 D9-final_gate2 D10-final_gate1 D11-final_merge D12-final_merge D13-conv_normal1 D14-conv_priority1 D15-bottleneck2-overflow2
-D8-end D9-final_gate3 D10-final_gate2 D11-final_gate1 D12-final_merge D13-conv_normal2 D14-conv_priority2 D15-overflow2
-D9-end D10-final_gate3 D11-final_gate2 D12-final_gate1 D13-final_merge D14-final_merge D15-conv_normal1
-D10-end D11-final_gate3 D12-final_gate2 D13-final_gate1 D14-final_merge D15-conv_normal2
-D11-end D12-final_gate3 D13-final_gate2 D14-final_gate1 D15-final_merge
-D12-end D13-final_gate3 D14-final_gate2 D15-final_gate1
-D13-end D14-final_gate3 D15-final_gate2
-D14-end D15-final_gate3
-D15-end
+D1-gate3
+D1-waiting_area3 D2-gate3
+D1-convergence D2-waiting_area3 D3-gate3
+D1-final_bottleneck D2-convergence D3-waiting_area3 D4-gate3
+D1-end D2-final_bottleneck D3-convergence D4-waiting_area3 D5-gate3
+D2-end D3-final_bottleneck D4-convergence D5-waiting_area3 D6-gate3
+D3-end D4-final_bottleneck D5-convergence D6-waiting_area3 D7-gate3
+D4-end D5-final_bottleneck D6-convergence D7-waiting_area3 D8-gate3
+D5-end D6-final_bottleneck D7-convergence D8-waiting_area3 D9-gate3
+D6-end D7-final_bottleneck D8-convergence D9-waiting_area3 D10-gate3
+D7-end D8-final_bottleneck D9-convergence D10-waiting_area3 D11-gate3
+D8-end D9-final_bottleneck D10-convergence D11-waiting_area3 D12-gate3
+D9-end D10-final_bottleneck D11-convergence D12-waiting_area3
+D10-end D11-final_bottleneck D12-convergence
+D11-end D12-final_bottleneck
+D12-end
