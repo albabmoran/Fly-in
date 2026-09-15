@@ -45,7 +45,8 @@ class StateMachine:
         try:
             cost, path = self.setup.get_shortest_path()
         except FormatError as e:
-            sys.exit(e)
+            print(e, file=sys.stderr)
+            sys.exit(1)
 
         for i in range(1, self.nb_drones + 1):
             self.drones.append(Drone(i, path.copy(), cost))

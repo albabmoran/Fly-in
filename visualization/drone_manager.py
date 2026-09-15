@@ -12,7 +12,7 @@ class DroneManager:
     drone and controls its animation throughout the simulation turns.
     """
 
-    def __init__(self, screen: pygame.Surface, data: dict[str, Any],
+    def __init__(self, screen: pygame.surface.Surface, data: dict[str, Any],
                  turns: dict[str, Any],
                  node_coords: dict[str, tuple[int, int]],
                  drone_size: int) -> None:

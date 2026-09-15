@@ -82,7 +82,8 @@ class SimulationSetup:
                 return cost, curr_path
 
             neighbors: list[str] = [i for i in self.connections[curr_node]]
-            neighbors.sort(key=lambda node: self.data['hub'][node]['zone'] != 'priority')
+            neighbors.sort(key=lambda
+                           node: self.data['hub'][node]['zone'] != 'priority')
             for node in neighbors:
                 if (curr_node, node) in blocked_con or node in blocked_hubs:
                     continue

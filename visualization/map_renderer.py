@@ -10,7 +10,7 @@ class MapRenderer:
     data and manages the animated rainbow color used by special hubs.
     """
 
-    def __init__(self, screen: pygame.Surface, data: dict[str, Any],
+    def __init__(self, screen: pygame.surface.Surface, data: dict[str, Any],
                  connections: dict[str, list[str]]) -> None:
         """
         Initialize the map renderer.
@@ -160,7 +160,7 @@ class MapRenderer:
                 pygame.draw.line(self.screen, "grey",
                                  (start_x, start_y), (end_x, end_y), 2)
 
-    def get_rainbow_color(self) -> pygame.Color:
+    def get_rainbow_color(self) -> pygame.color.Color:
         """
         Calculate the current color of the rainbow animation.
 
@@ -213,7 +213,7 @@ class MapRenderer:
         """
 
         if color == "rainbow":
-            hub_color: pygame.Color = self.get_rainbow_color()
+            hub_color: pygame.color.Color = self.get_rainbow_color()
         else:
             hub_color = pygame.Color(color)
 

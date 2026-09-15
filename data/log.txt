@@ -1,3 +1,0 @@
-D1-waypoint D2-waypoint
-D1-waypoint2 D2-waypoint2
-D1-end D2-end

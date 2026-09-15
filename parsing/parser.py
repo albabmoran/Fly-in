@@ -80,7 +80,12 @@ class FormatHub:
                 info['name'] = data[0]
             info['coord'] = [data[1], data[2]]
             for i in range(0, len(metadata)):
-                k, v = metadata[i].split('=')
+                try:
+                    k, v = metadata[i].split('=')
+                except ValueError:
+                    print(f"ERROR (line {line}):"
+                          f" unknown key")
+                    sys.exit(1)
                 if k == "color":
                     info['color'] = v
                 elif k == "zone":
@@ -194,9 +199,12 @@ class ParseMap:
             OSError: If the input file cannot be read.
         """
 
+        start_check: bool = False
+        end_check: bool = False
+
         if len(sys.argv) != 2:
             print("ERROR: invalid number of arguments. "
-                "<Usage: python3 fly-in.py *txt>", file=sys.stderr)
+                  "<Usage: python3 fly-in.py *txt>", file=sys.stderr)
             sys.exit(2)
 
         try:
@@ -236,9 +244,18 @@ class ParseMap:
                       "with HUB: Info []", file=sys.stderr)
                 sys.exit(1)
 
+            if "start_hub" in line:
+                start_check = True
+            if "end_hub" in line:
+                end_check = True
+
             k, v = line.split(":")
             self.process_line(k, v.strip())
             self.line += 1
+
+        if not start_check or not end_check:
+            print("ERROR: missing start/end hub", file=sys.stderr)
+            sys.exit(1)
 
     def process_line(self, key: str, info: str) -> None:
         """
@@ -277,12 +294,15 @@ class ParseMap:
                 if 'hub' in key:
                     hub_info: dict[str, Any] = FormatHub.format(
                         key, info.split(), metadata, self.line)
+                    if '-' in info.split()[0]:
+                        raise ValueError(f"ERROR (line {self.line}):"
+                                         " Hub's name must not contain '-'")
                     if key == "start_hub":
                         n_change: str = ' ' + info.split()[0] + ' '
                         c_change: str = '-' + info.split()[0]
                         for i in range(0, len(self.content)):
                             self.content[i] = self.content[i].replace(
-                                n_change, "start")
+                                n_change, "start ")
                         for i in range(0, len(self.content)):
                             self.content[i] = self.content[i].replace(
                                 c_change, "-start")
@@ -291,7 +311,7 @@ class ParseMap:
                         co_change: str = '-' + info.split()[0]
                         for i in range(0, len(self.content)):
                             self.content[i] = self.content[i].replace(
-                                na_change, "end")
+                                na_change, "end ")
                         for i in range(0, len(self.content)):
                             self.content[i] = self.content[i].replace(
                                 co_change, "-end")

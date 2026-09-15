@@ -181,12 +181,10 @@ class Hub(BaseModel, Processor):
         """
 
         if '-' in self.name:
-            raise ValueError(f"ERROR (line {self.line}):"
-                             " Hub's name must not contain '-'")
+            raise ValueError(" Hub's name must not contain '-'")
         if self.color != 'rainbow':
             if not pygame.Color(self.color):
-                raise ValueError(f"ERROR (line {self.line}):"
-                                 " Hub's color must be a"
+                raise ValueError(" Hub's color must be a"
                                  " single valid string with no ' '")
         if self.name in self.map['hub']:
             raise ValueError("Hub's name must be unique")
