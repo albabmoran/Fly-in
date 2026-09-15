@@ -1,0 +1,22 @@
+{
+    "start": [
+        "waypoint1",
+        "waypoint"
+    ],
+    "waypoint1": [
+        "start",
+        "waypoint2"
+    ],
+    "waypoint": [
+        "start",
+        "waypoint2"
+    ],
+    "waypoint2": [
+        "waypoint1",
+        "waypoint",
+        "end"
+    ],
+    "end": [
+        "waypoint2"
+    ]
+}

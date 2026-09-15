@@ -1,0 +1,32 @@
+{
+    "1": {
+        "1": {
+            "movement": 2,
+            "hub": "waypoint"
+        },
+        "2": {
+            "movement": 2,
+            "hub": "waypoint"
+        }
+    },
+    "2": {
+        "1": {
+            "movement": 2,
+            "hub": "waypoint2"
+        },
+        "2": {
+            "movement": 2,
+            "hub": "waypoint2"
+        }
+    },
+    "3": {
+        "1": {
+            "movement": 2,
+            "hub": "end"
+        },
+        "2": {
+            "movement": 2,
+            "hub": "end"
+        }
+    }
+}
