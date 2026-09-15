@@ -4,6 +4,7 @@ from .drone import Drone
 from .move import Move
 from typing import Any
 import json
+import sys
 
 
 class StateMachine:
@@ -41,7 +42,10 @@ class StateMachine:
         its corresponding movement cost.
         """
 
-        cost, path = self.setup.get_shortest_path()
+        try:
+            cost, path = self.setup.get_shortest_path()
+        except FormatError as e:
+            sys.exit(e)
 
         for i in range(1, self.nb_drones + 1):
             self.drones.append(Drone(i, path.copy(), cost))

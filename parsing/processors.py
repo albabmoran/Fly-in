@@ -189,8 +189,10 @@ class Hub(BaseModel, Processor):
                                  " Hub's color must be a"
                                  " single valid string with no ' '")
         if self.name in self.map['hub']:
-            raise ValueError(f"ERROR (line {self.line}):"
-                             " Hub's name must be unique")
+            raise ValueError("Hub's name must be unique")
+        if self.name == 'end':
+            if 'goal' in self.map['hub']:
+                raise ValueError("Hub's name must be unique")
         if self.name == "start" or self.name == "end":
             self.max_drones = self.nb_drones
         return self
@@ -257,8 +259,7 @@ class Connection(BaseModel, Processor):
                  and self.zone_b == con['zone_b'])
                 or (self.zone_a == con['zone_b']
                     and self.zone_b == con['zone_a'])):
-                raise ValueError(f"ERROR (line {self.line}):"
-                                 " connections must only appear once")
+                raise ValueError("connections must only appear once")
         return self
 
     def ingest(self) -> None:
@@ -287,8 +288,12 @@ class SaveMap(Processor):
         Validates the map and saves it to the JSON output file.
         """
 
-        self.check_map()
-        self.convert_to_json()
+        try:
+            self.check_map()
+            self.convert_to_json()
+        except FormatError as e:
+            print(e)
+            sys.exit(1)
 
     def ingest(self) -> None:
         """
