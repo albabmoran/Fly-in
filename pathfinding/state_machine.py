@@ -29,6 +29,7 @@ class StateMachine:
         self.nb_drones = self.setup.get_nb_drones()
         self.max_flow = self.setup.get_max_flow()
         self.drones: list[Drone] = []
+        self.start: str = ""
 
         self.turn: int = 0
         self.result: dict[int, Any] = {}
@@ -48,8 +49,9 @@ class StateMachine:
             print(e, file=sys.stderr)
             sys.exit(1)
 
+        self.start = path[0]
         for i in range(1, self.nb_drones + 1):
-            self.drones.append(Drone(i, path.copy(), cost))
+            self.drones.append(Drone(i, path.copy(), cost, self.start))
 
     def run(self) -> None:
         """
@@ -243,7 +245,7 @@ class StateMachine:
                 self.result[self.turn][drone.id] = {
                     "movement": drone.movement.value,
                     "hub": f'{drone.pos}-{drone.target}'}
-            elif drone.pos == 'start':
+            elif drone.pos == self.start:
                 continue
             else:
                 self.result[self.turn][drone.id] = {

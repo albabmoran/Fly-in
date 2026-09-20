@@ -10,7 +10,7 @@ class Drone:
     remain in transit when a connection requires multiple turns.
     """
 
-    def __init__(self, id: int, path: list[str], cost: int) -> None:
+    def __init__(self, id: int, path: list[str], cost: int, pos: str) -> None:
         """
         Initializes a drone with its path and movement cost.
 
@@ -22,7 +22,7 @@ class Drone:
 
         self.id: int = id
 
-        self.pos: str = 'start'
+        self.pos: str = pos
         self.path: list[str] = path
         self.cost: int = cost
         self.waiting_turns: int = 0
@@ -78,7 +78,7 @@ class Drone:
         self.transit = False
         self.movement = Move.move
         self.cost -= 1
-        if self.pos == "end":
+        if self.pos == self.path[-1]:
             self.finished = True
 
     def move_drone(self, target: str) -> None:
@@ -97,5 +97,5 @@ class Drone:
         self.movement = Move.move
         self.waiting_turns = 0
         self.cost -= 1
-        if self.pos == "end":
+        if self.pos == self.path[-1]:
             self.finished = True

@@ -25,6 +25,7 @@ install:
 
 run:
 	@echo "$(BLUE) -> Running $(MAIN) with $(MAP) $(RESET)"
+	@mkdir -p data
 	@PYGAME_HIDE_SUPPORT_PROMPT=1 $(POETRY) run $(PYTHON) $(MAIN) $(MAP)
 
 debug:

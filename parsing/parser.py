@@ -72,12 +72,7 @@ class FormatHub:
         info: dict[str, Any] = {}
 
         try:
-            if name == "start_hub":
-                info['name'] = "start"
-            elif name == "end_hub":
-                info['name'] = "end"
-            else:
-                info['name'] = data[0]
+            info['name'] = data[0]
             info['coord'] = [data[1], data[2]]
             for i in range(0, len(metadata)):
                 try:
@@ -294,27 +289,10 @@ class ParseMap:
                 if 'hub' in key:
                     hub_info: dict[str, Any] = FormatHub.format(
                         key, info.split(), metadata, self.line)
-                    if '-' in info.split()[0]:
-                        raise ValueError(f"ERROR (line {self.line}):"
-                                         " Hub's name must not contain '-'")
                     if key == "start_hub":
-                        n_change: str = ' ' + info.split()[0] + ' '
-                        c_change: str = '-' + info.split()[0]
-                        for i in range(0, len(self.content)):
-                            self.content[i] = self.content[i].replace(
-                                n_change, "start ")
-                        for i in range(0, len(self.content)):
-                            self.content[i] = self.content[i].replace(
-                                c_change, "-start")
+                        hub_info["start_hub"] = True
                     if key == "end_hub":
-                        na_change: str = ' ' + info.split()[0] + ' '
-                        co_change: str = '-' + info.split()[0]
-                        for i in range(0, len(self.content)):
-                            self.content[i] = self.content[i].replace(
-                                na_change, "end ")
-                        for i in range(0, len(self.content)):
-                            self.content[i] = self.content[i].replace(
-                                co_change, "-end")
+                        hub_info["end_hub"] = True
                     hub_info['nb_drones'] = self.nb_drones
                     Hub(hub_info, line=self.line)
                 else:

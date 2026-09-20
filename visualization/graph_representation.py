@@ -43,6 +43,7 @@ class GraphRepresentation:
             self.data,
             self.turns,
             self.map_renderer.node_coords,
+            self.map_renderer.start_coord,
             self.map_renderer.drone_size
         )
         self.render()

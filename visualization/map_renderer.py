@@ -27,20 +27,21 @@ class MapRenderer:
 
         self.center: tuple[int, int] = (640, 360)
         self.node_coords: dict[str, tuple[int, int]] = {}
-        self.max_x: int = 0
-        self.max_y: int = 0
-        self.x_center: int | float = self.get_center_coords()
+        self.start_coord: tuple[int, int]
+        self.x: int = 0
+        self.y: int = 0
+        self.x_center, self.y_center = self.get_center_coords()
 
         self.sep: int = 0
         self.circle_size: int = 0
         self.drone_size: int = 0
 
-        self.get_sep_and_size(self.max_x, self.max_y)
+        self.get_sep_and_size(self.x, self.y)
         self.calculate_node_coords()
 
         self.rainbow_time: float = 0.0
 
-    def get_sep_and_size(self, max_x: int, max_y: int) -> None:
+    def get_sep_and_size(self, x: int, y: int) -> None:
         """
         Calculate the spacing and size of map elements.
 
@@ -52,22 +53,22 @@ class MapRenderer:
             max_y: Maximum vertical coordinate in the map.
         """
 
-        if max_y > 3:
+        if y > 3:
             self.sep = 50
             self.circle_size = 10
-            self.drone_size = 12
+            self.drone_size = 8
 
-        elif 0 <= max_x <= 8:
+        elif 0 <= x <= 8:
             self.sep = 120
             self.circle_size = 30
             self.drone_size = 12
 
-        elif 8 < max_x <= 16:
+        elif 8 < x <= 16:
             self.sep = 85
             self.circle_size = 20
             self.drone_size = 10
 
-        elif max_x > 16:
+        elif x > 16:
             self.sep = 50
             self.circle_size = 10
             self.drone_size = 8
@@ -86,6 +87,7 @@ class MapRenderer:
         max_x: int = 0
         min_x: int = 0
         max_y: int = 0
+        min_y: int = 0
 
         for hub in self.data["hub"].values():
             x = hub["coord"][0]
@@ -97,10 +99,12 @@ class MapRenderer:
                 min_x = x
             if y > max_y:
                 max_y = y
+            if y < min_y:
+                min_y = y
 
-        self.max_x = max_x
-        self.max_y = max_y
-        return (max_x - min_x) / 2
+        self.x = max_x - min_x
+        self.y = max_y - min_y
+        return (max_x - min_x) / 2, (max_y - min_y) / 2
 
     def get_node_coords(self, node: str) -> tuple[int, int]:
         """
@@ -134,6 +138,8 @@ class MapRenderer:
         """
 
         for node in self.data["hub"]:
+            if 'start_hub' in self.data['hub'][node].keys():
+                self.start_coord = self.get_node_coords(node)
             self.node_coords[node] = self.get_node_coords(node)
 
     def draw_connections(self) -> None:

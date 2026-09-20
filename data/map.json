@@ -1,0 +1,233 @@
+{
+    "nb_drones": 50,
+    "hub": {
+        "start": {
+            "coord": [
+                0,
+                0
+            ],
+            "zone": "normal",
+            "color": "green",
+            "max_drones": 50,
+            "line": 8,
+            "start_hub": true
+        },
+        "highway1": {
+            "coord": [
+                2,
+                0
+            ],
+            "zone": "priority",
+            "color": "cyan",
+            "max_drones": 20,
+            "line": 11
+        },
+        "highway2": {
+            "coord": [
+                4,
+                0
+            ],
+            "zone": "priority",
+            "color": "cyan",
+            "max_drones": 20,
+            "line": 12
+        },
+        "highway3": {
+            "coord": [
+                6,
+                0
+            ],
+            "zone": "priority",
+            "color": "cyan",
+            "max_drones": 20,
+            "line": 13
+        },
+        "dead_end_massive": {
+            "coord": [
+                8,
+                0
+            ],
+            "zone": "normal",
+            "color": "black",
+            "max_drones": 50,
+            "line": 14
+        },
+        "narrow1": {
+            "coord": [
+                1,
+                2
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 1,
+            "line": 17
+        },
+        "narrow2": {
+            "coord": [
+                3,
+                2
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 1,
+            "line": 18
+        },
+        "narrow3": {
+            "coord": [
+                5,
+                2
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 1,
+            "line": 19
+        },
+        "narrow4": {
+            "coord": [
+                7,
+                2
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 1,
+            "line": 20
+        },
+        "narrow_s1": {
+            "coord": [
+                1,
+                -2
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 1,
+            "line": 22
+        },
+        "narrow_s2": {
+            "coord": [
+                3,
+                -2
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 1,
+            "line": 23
+        },
+        "narrow_s3": {
+            "coord": [
+                5,
+                -2
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 1,
+            "line": 24
+        },
+        "narrow_s4": {
+            "coord": [
+                7,
+                -2
+            ],
+            "zone": "normal",
+            "color": "orange",
+            "max_drones": 1,
+            "line": 25
+        },
+        "goal": {
+            "coord": [
+                9,
+                0
+            ],
+            "zone": "normal",
+            "color": "rainbow",
+            "max_drones": 50,
+            "line": 27,
+            "end_hub": true
+        }
+    },
+    "connection": {
+        "1": {
+            "zone_a": "start",
+            "zone_b": "highway1",
+            "max_link_capacity": 20,
+            "line": 30
+        },
+        "2": {
+            "zone_a": "highway1",
+            "zone_b": "highway2",
+            "max_link_capacity": 20,
+            "line": 31
+        },
+        "3": {
+            "zone_a": "highway2",
+            "zone_b": "highway3",
+            "max_link_capacity": 20,
+            "line": 32
+        },
+        "4": {
+            "zone_a": "highway3",
+            "zone_b": "dead_end_massive",
+            "max_link_capacity": 50,
+            "line": 33
+        },
+        "5": {
+            "zone_a": "start",
+            "zone_b": "narrow1",
+            "max_link_capacity": 1,
+            "line": 36
+        },
+        "6": {
+            "zone_a": "narrow1",
+            "zone_b": "narrow2",
+            "max_link_capacity": 1,
+            "line": 37
+        },
+        "7": {
+            "zone_a": "narrow2",
+            "zone_b": "narrow3",
+            "max_link_capacity": 1,
+            "line": 38
+        },
+        "8": {
+            "zone_a": "narrow3",
+            "zone_b": "narrow4",
+            "max_link_capacity": 1,
+            "line": 39
+        },
+        "9": {
+            "zone_a": "narrow4",
+            "zone_b": "goal",
+            "max_link_capacity": 1,
+            "line": 40
+        },
+        "10": {
+            "zone_a": "start",
+            "zone_b": "narrow_s1",
+            "max_link_capacity": 1,
+            "line": 42
+        },
+        "11": {
+            "zone_a": "narrow_s1",
+            "zone_b": "narrow_s2",
+            "max_link_capacity": 1,
+            "line": 43
+        },
+        "12": {
+            "zone_a": "narrow_s2",
+            "zone_b": "narrow_s3",
+            "max_link_capacity": 1,
+            "line": 44
+        },
+        "13": {
+            "zone_a": "narrow_s3",
+            "zone_b": "narrow_s4",
+            "max_link_capacity": 1,
+            "line": 45
+        },
+        "14": {
+            "zone_a": "narrow_s4",
+            "zone_b": "goal",
+            "max_link_capacity": 1,
+            "line": 46
+        }
+    }
+}

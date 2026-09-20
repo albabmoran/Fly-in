@@ -1,6 +1,6 @@
 from parsing import FormatError
 from collections import deque
-from typing import Any
+from typing import Any, Optional
 import json
 
 
@@ -26,8 +26,20 @@ class SimulationSetup:
         with open("data/connections.json", 'r', encoding='utf-8') as f:
             self.connections: dict[str, list[str]] = json.load(f)
 
+        for k, v in self.data['hub'].items():
+            if 'start_hub' in v:
+                self.start_node = k
+                break
+
+        for k, v in self.data['hub'].items():
+            if 'end_hub' in v:
+                self.end_node = k
+                break
+        #self.start_node: str = [i if 'start_hub' in i else for i in self.data['hub']]
+
+
     def get_shortest_path(
-            self, start_node: str = "start",
+            self, start_node: str | None = None,
             blocked_con: list[tuple[str, str]] | None = None,
             blocked_hubs: list[str] | None = None) -> tuple[int, list[str]]:
         """
@@ -59,6 +71,8 @@ class SimulationSetup:
                 starting node.
         """
 
+        if not start_node:
+            start_node = self.start_node
         if blocked_con is None:
             blocked_con = []
         if blocked_hubs is None:
@@ -68,13 +82,13 @@ class SimulationSetup:
         cost: int = 0
 
         while queue:
-            curr_path = queue.popleft()
-            curr_node = curr_path[-1]
+            curr_path: list[str | None] = queue.popleft()
+            curr_node: str = curr_path[-1]
             visited.append(curr_node)
 
-            if curr_node == 'end':
+            if curr_node == self.end_node:
                 for node in curr_path:
-                    if node != 'end':
+                    if node != curr_node:
                         if self.data['hub'][node]['zone'] == "restricted":
                             cost += 2
                         else:

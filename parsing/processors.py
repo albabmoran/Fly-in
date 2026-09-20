@@ -62,10 +62,6 @@ class Processor(abc.ABC):
                 connection references an unknown hub.
         """
 
-        if "start" not in self.map['hub']:
-            raise FormatError("ERROR: no start point")
-        if "end" not in self.map['hub']:
-            raise FormatError("ERROR: no end point")
         for con in self.map['connection'].values():
             if (
                 con['zone_a'] not in self.map['hub']
@@ -103,6 +99,8 @@ class Hub(BaseModel, Processor):
     color: str = Field(default="grey")
     max_drones: Optional[int] = Field(default=1, ge=0)
     nb_drones: int = Field(ge=0)
+    start_hub: bool | None = None
+    end_hub: bool | None = None
     line: int = Field(ge=0)
 
     def __init__(self, info: dict[str, Any],
@@ -188,10 +186,7 @@ class Hub(BaseModel, Processor):
                                  " single valid string with no ' '")
         if self.name in self.map['hub']:
             raise ValueError("Hub's name must be unique")
-        if self.name == 'end':
-            if 'goal' in self.map['hub']:
-                raise ValueError("Hub's name must be unique")
-        if self.name == "start" or self.name == "end":
+        if self.start_hub or self.end_hub:
             self.max_drones = self.nb_drones
         return self
 
@@ -204,8 +199,13 @@ class Hub(BaseModel, Processor):
         """
 
         data = {self.name: self.model_dump(mode='json',
-                                           exclude={'name', 'nb_drones'})}
+                                           exclude={'name', 'nb_drones',
+                                                    'start_hub', 'end_hub'})}
         self.map['hub'].update(data)
+        if self.start_hub:
+            self.map['hub'][self.name].update({'start_hub': self.start_hub})
+        if self.end_hub:
+            self.map['hub'][self.name].update({'end_hub': self.end_hub})
         self.map['nb_drones'] = self.nb_drones
 
 

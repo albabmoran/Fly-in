@@ -15,6 +15,7 @@ class DroneManager:
     def __init__(self, screen: pygame.surface.Surface, data: dict[str, Any],
                  turns: dict[str, Any],
                  node_coords: dict[str, tuple[int, int]],
+                 start_coord: tuple[int, int],
                  drone_size: int) -> None:
         """
         Initializes the drone manager.
@@ -34,6 +35,7 @@ class DroneManager:
         self.data = data
         self.turns = turns
         self.node_coords = node_coords
+        self.start_coord = start_coord
         self.drone_size = drone_size
 
         self.colors: list[str] = ["red", "blue", "green", "yellow",
@@ -68,12 +70,11 @@ class DroneManager:
         """
 
         nb_drones: int = self.data["nb_drones"]
-        start_coord = self.node_coords["start"]
 
         for i in range(1, nb_drones + 1):
             drone = str(i)
-            self.drone_pos[drone] = (float(start_coord[0]),
-                                     float(start_coord[1]))
+            self.drone_pos[drone] = (float(self.start_coord[0]),
+                                     float(self.start_coord[1]))
             self.drone_angles[drone] = 0.0
             self.drone_colors[drone] = random.choice(self.colors)
 
@@ -189,7 +190,7 @@ class DroneManager:
         and animation state, and prepares the first turn.
         """
 
-        start = self.node_coords["start"]
+        start = self.start_coord
         for drone in self.drone_pos:
             self.drone_pos[drone] = (float(start[0]), float(start[1]))
             self.drone_angles[drone] = 0.0
@@ -273,14 +274,14 @@ class DroneManager:
         as well as their orientation.
         """
 
-        start_pos = self.node_coords["start"]
+        start = self.start_coord
 
         for drone in self.drone_pos:
-            self.drone_pos[drone] = (float(start_pos[0]), float(start_pos[1]))
-            self.drone_start_pos[drone] = (float(start_pos[0]),
-                                           float(start_pos[1]))
-            self.drone_target_pos[drone] = (float(start_pos[0]),
-                                            float(start_pos[1]))
+            self.drone_pos[drone] = (float(start[0]), float(start[1]))
+            self.drone_start_pos[drone] = (float(start[0]),
+                                           float(start[1]))
+            self.drone_target_pos[drone] = (float(start[0]),
+                                            float(start[1]))
             self.drone_angles[drone] = 0.0
 
     def draw_drone(self, position: tuple[float, float],
