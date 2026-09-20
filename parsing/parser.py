@@ -216,7 +216,7 @@ class ParseMap:
             elif line.startswith("nb_drones:"):
                 break
             else:
-                sys.exit("ERROR: <nb_drones> must be the first line")
+                sys.exit("ERROR: <nb_drones:> must be the first line")
 
         for line in self.content:
             if not line.strip() or line.startswith("#"):
@@ -234,7 +234,10 @@ class ParseMap:
                       "with HUB: Info []", file=sys.stderr)
                 sys.exit(1)
 
-            if line.count('[') > 1 or line.count(']') > 1:
+            if (
+                (line.count('[') != 1 or line.count(']') != 1)
+                and not (line.count('[') == 0 and line.count(']') == 0)
+            ):
                 print(f"ERROR (line {self.line}): *.txt should have lines "
                       "with HUB: Info []", file=sys.stderr)
                 sys.exit(1)
@@ -278,8 +281,7 @@ class ParseMap:
             if key == "nb_drones":
                 v = int(info)
                 if v <= 0:
-                    raise ValueError(f"ERROR (line {self.line}):"
-                                     f" {key} must be a"
+                    raise ValueError(f" {key} must be a"
                                      f"positive int: ({info})")
                 self.nb_drones = v
             elif key in ['hub', 'start_hub', 'end_hub'] or key == "connection":
@@ -311,5 +313,5 @@ class ParseMap:
                   e.errors()[0]["msg"], file=sys.stderr)
             sys.exit(1)
         except ValueError as e:
-            print(e, file=sys.stderr)
+            print(f"ERROR (line {self.line}):", e, file=sys.stderr)
             sys.exit(1)

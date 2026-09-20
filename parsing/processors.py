@@ -188,6 +188,8 @@ class Hub(BaseModel, Processor):
             raise ValueError("Hub's name must be unique")
         if self.start_hub or self.end_hub:
             self.max_drones = self.nb_drones
+        if self.max_drones == 0:
+            self.zone = Zone.blocked
         return self
 
     def ingest(self) -> None:

@@ -1,6 +1,7 @@
 from parsing import ParseMap, SaveMap, ParseCon
 from pathfinding import StateMachine
 from visualization import GraphRepresentation
+import sys
 
 
 def main() -> None:
@@ -11,15 +12,17 @@ def main() -> None:
     runs the drone pathfinding simulation, and starts the graphical
     representation of the results.
     """
+    try:
+        ParseMap()
+        SaveMap()
 
-    ParseMap()
-    SaveMap()
+        ParseCon()
 
-    ParseCon()
+        StateMachine()
 
-    StateMachine()
-
-    GraphRepresentation()
+        GraphRepresentation()
+    except KeyboardInterrupt:
+        sys.exit("\nERROR: Keyboard Interrupted")
 
 
 if __name__ == "__main__":
