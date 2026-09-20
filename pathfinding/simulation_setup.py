@@ -1,6 +1,6 @@
 from parsing import FormatError
 from collections import deque
-from typing import Any, Optional
+from typing import Any
 import json
 
 
@@ -35,8 +35,6 @@ class SimulationSetup:
             if 'end_hub' in v:
                 self.end_node = k
                 break
-        #self.start_node: str = [i if 'start_hub' in i else for i in self.data['hub']]
-
 
     def get_shortest_path(
             self, start_node: str | None = None,
@@ -82,8 +80,8 @@ class SimulationSetup:
         cost: int = 0
 
         while queue:
-            curr_path: list[str | None] = queue.popleft()
-            curr_node: str = curr_path[-1]
+            curr_path = queue.popleft()
+            curr_node = curr_path[-1]
             visited.append(curr_node)
 
             if curr_node == self.end_node:

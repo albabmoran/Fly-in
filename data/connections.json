@@ -1,58 +1,16 @@
 {
     "start": [
-        "highway1",
-        "narrow1",
-        "narrow_s1"
+        "waypoint1"
     ],
-    "highway1": [
+    "waypoint1": [
         "start",
-        "highway2"
+        "waypoint2"
     ],
-    "highway2": [
-        "highway1",
-        "highway3"
-    ],
-    "highway3": [
-        "highway2",
-        "dead_end_massive"
-    ],
-    "dead_end_massive": [
-        "highway3"
-    ],
-    "narrow1": [
-        "start",
-        "narrow2"
-    ],
-    "narrow2": [
-        "narrow1",
-        "narrow3"
-    ],
-    "narrow3": [
-        "narrow2",
-        "narrow4"
-    ],
-    "narrow4": [
-        "narrow3",
+    "waypoint2": [
+        "waypoint1",
         "goal"
     ],
     "goal": [
-        "narrow4",
-        "narrow_s4"
-    ],
-    "narrow_s1": [
-        "start",
-        "narrow_s2"
-    ],
-    "narrow_s2": [
-        "narrow_s1",
-        "narrow_s3"
-    ],
-    "narrow_s3": [
-        "narrow_s2",
-        "narrow_s4"
-    ],
-    "narrow_s4": [
-        "narrow_s3",
-        "goal"
+        "waypoint2"
     ]
 }

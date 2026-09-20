@@ -30,6 +30,8 @@ class MapRenderer:
         self.start_coord: tuple[int, int]
         self.x: int = 0
         self.y: int = 0
+        self.x_center: float = 0
+        self.y_center: float = 0
         self.x_center, self.y_center = self.get_center_coords()
 
         self.sep: int = 0
@@ -53,7 +55,7 @@ class MapRenderer:
             max_y: Maximum vertical coordinate in the map.
         """
 
-        if y > 3:
+        if y > 3 or y < -3:
             self.sep = 50
             self.circle_size = 10
             self.drone_size = 8
@@ -73,7 +75,7 @@ class MapRenderer:
             self.circle_size = 10
             self.drone_size = 8
 
-    def get_center_coords(self) -> int | float:
+    def get_center_coords(self) -> tuple[float, float]:
         """
         Calculate the horizontal center of the map coordinates.
 
@@ -103,8 +105,11 @@ class MapRenderer:
                 min_y = y
 
         self.x = max_x - min_x
-        self.y = max_y - min_y
-        return (max_x - min_x) / 2, (max_y - min_y) / 2
+        if min_y < 0:
+            self.y = max_y + min_y
+        else:
+            self.y = max_y - min_y
+        return self.x / 2, self.y / 2
 
     def get_node_coords(self, node: str) -> tuple[int, int]:
         """
@@ -122,10 +127,11 @@ class MapRenderer:
             - self.data["hub"][node]["coord"][0]
         )
         x = self.center[0] - self.sep * scale_x
-        y = (
-            self.center[1]
-            - self.sep * self.data["hub"][node]["coord"][1]
+        scale_y = (
+            self.y_center
+            - self.data["hub"][node]["coord"][1]
         )
+        y = self.center[1] + self.sep * scale_y
 
         return int(x), int(y)
 
