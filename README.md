@@ -2,9 +2,9 @@
 
 # Fly-In
 
-<center>
-  <img src="fly-in.gif" alt="Demostración del proyecto" width="600">
-</center>
+<p align="center">
+  <img src="fly-in.gif" alt="Project demonstration" width="600" />
+</p>
 
 ## Table of Contents
 
